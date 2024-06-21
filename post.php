@@ -386,84 +386,14 @@ if ($id > 0) {
                 <img src="data/postImages/GPID-<?php echo $postImage; ?>.png" alt="post image" class="postImageInner" id="postImageInner">
 
                 <div class="postContainerControlled">
+                    <!--TODO: add like button, dislike button, report button.-->
                     <div class="postDetail">
-                        <!--TODO: add like button, dislike button, report button.-->
                         <div class="postControl">
                             <a class="postLike" id="postLike" <?php echo $likeButton; ?>>
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#404040"><path d="M480-288q60 0 110.5-31t79.5-84H290q29 53 79.5 84T480-288ZM326-525l34-34 34 34 34-34-68-68-68 68 34 34Zm240 0 34-34 34 34 34-34-68-68-68 68 34 34ZM480-96q-79 0-149-30t-122.5-82.5Q156-261 126-331T96-480q0-80 30-149.5t82.5-122Q261-804 331-834t149-30q80 0 149.5 30t122 82.5Q804-699 834-629.5T864-480q0 79-30 149t-82.5 122.5Q699-156 629.5-126T480-96Zm0-384Zm0 312q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Z"/></svg>    
                                 <span id="postLikeCount" style="font-weight: bold;"><?php echo $postLikes; ?></span>                    
                             </a>
-                            <script>
-                                var likeButton = document.getElementById("postLike");
-                                var isLiked = <?php echo $isLike; ?>;
-
-                                if (isLiked === 1) {
-                                    likeButton.classList.add('clicked');
-                                } else {
-                                    likeButton.classList.remove('clicked');
-                                }
-                                
-                                function like() {
-                                    var  likeCountElement = document.getElementById('postLikeCount');
-                                    var currentLikes = parseInt(likeCountElement.innerText);
-                                    var newLikes;
-
-                                    // Check if the user is logged in
-                                    if (<?php echo $isLoggedIn; ?> === 1) {
-                                        // Proceed with like or dislike functionality
-                                        if (isLiked === 0) {
-                                            isLiked = 1;
-                                            likeButton.classList.add('clicked');
-                                            newLikes = currentLikes + 1;
-                                            updateLikes('like');
-                                        } else {
-                                            isLiked = 0;
-                                            likeButton.classList.remove('clicked');
-                                            newLikes = currentLikes - 1;
-                                            updateLikes('dislike');
-                                        }
-                                        likeCountElement.innerText = newLikes;
-                                    } else {
-                                        // Redirect to login.php if the user is not logged in
-                                        window.location.href = 'login.php';
-                                    }
-                                }                           
-
-                                function updateLikes(action) {
-                                    var postID = <?php echo json_encode($postID); ?>;
-                                    fetch(`php/updateLike.php?action=${encodeURIComponent(action)}&id=${encodeURIComponent(postID)}`, {
-                                        method: 'GET'
-                                    })
-                                    .then(response => {
-                                        if (!response.ok) {
-                                            throw new Error('Network response was not ok');
-                                        }
-                                        return response.text();
-                                    })
-                                    .then(data => {
-                                        console.log('Response from server:', data); // Check what response is received
-                                    })
-                                    .catch(error => {
-                                        console.error('Fetch Error:', error);
-                                    });
-
-                                    fetch(`php/updateLikesOnHistory.php?action=${encodeURIComponent(action)}&id=${encodeURIComponent(postID)}`, {
-                                        method: 'GET'
-                                    })
-                                    .then(response => {
-                                        if (!response.ok) {
-                                            throw new Error('Network response was not ok');
-                                        }
-                                        return response.text();
-                                    })
-                                    .then(data => {
-                                        console.log('Response from server:', data); // Check what response is received
-                                    })
-                                    .catch(error => {
-                                        console.error('Fetch Error:', error);
-                                    });
-                                }
-                            </script>
+                            
                         </div>
                         <div>
                             <h1 class="postTitle"><?php echo $postTitle; ?></h1>
@@ -480,8 +410,10 @@ if ($id > 0) {
                             </div>
                         </div>
                     </a>
+
                 </div>
 
+                
                 <div class="postContainerControlled">
                     <div class="postRecipe">
                         <h1>Recipe</h1>
@@ -504,6 +436,77 @@ if ($id > 0) {
     </div>
 
 <!----------------------------------------------------------------script---------------------------------------------------------------->
+    <script>
+        var likeButton = document.getElementById("postLike");
+        var isLiked = <?php echo $isLike; ?>;
+
+        if (isLiked === 1) {
+            likeButton.classList.add('clicked');
+        } else {
+            likeButton.classList.remove('clicked');
+        }
+        
+        function like() {
+            var  likeCountElement = document.getElementById('postLikeCount');
+            var currentLikes = parseInt(likeCountElement.innerText);
+            var newLikes;
+
+            // Check if the user is logged in
+            if (<?php echo $isLoggedIn; ?> === 1) {
+                // Proceed with like or dislike functionality
+                if (isLiked === 0) {
+                    isLiked = 1;
+                    likeButton.classList.add('clicked');
+                    newLikes = currentLikes + 1;
+                    updateLikes('like');
+                } else {
+                    isLiked = 0;
+                    likeButton.classList.remove('clicked');
+                    newLikes = currentLikes - 1;
+                    updateLikes('dislike');
+                }
+                likeCountElement.innerText = newLikes;
+            } else {
+                // Redirect to login.php if the user is not logged in
+                window.location.href = 'login.php';
+            }
+        }                           
+
+        function updateLikes(action) {
+            var postID = <?php echo json_encode($postID); ?>;
+            fetch(`php/updateLike.php?action=${encodeURIComponent(action)}&id=${encodeURIComponent(postID)}`, {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log('Response from server:', data); // Check what response is received
+            })
+            .catch(error => {
+                console.error('Fetch Error:', error);
+            });
+
+            fetch(`php/updateLikesOnHistory.php?action=${encodeURIComponent(action)}&id=${encodeURIComponent(postID)}`, {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+                console.log('Response from server:', data); // Check what response is received
+            })
+            .catch(error => {
+                console.error('Fetch Error:', error);
+            });
+        }
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var navbar = document.getElementById('navbar');
@@ -529,7 +532,6 @@ if ($id > 0) {
                 }
             });
         });
-
     </script>
 </body>
 </html>
