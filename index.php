@@ -29,28 +29,6 @@
     <div id="searchModule"></div>
     <script>
         function openSearch() {
-            const searchBoxHtml = `
-            <div class="searchBoxControlled">
-                <div class="searchBoxNav">
-                    <ul>
-                        <li><a href="#" onclick="closeSearch()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#404040"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg><h3>close search</h3></a></li>
-                    </ul>
-                </div>
-                <div class="searchBoxContainer">
-                    <form id="searchForm" action="search.php" method="GET">
-                        <input id="bigSearchInputBox" type="text" name="searchInput" placeholder="search...">
-                    </form>
-                </div>
-                <div class="searchBoxSaperator">
-                    <h3>Results</h3>
-                    <hr width="100%" color="#404040" size="1px" border-radius="5px" />
-                </div>
-                <div class="searchResult">
-                    <!--results goes here, it will display dynamically -->
-                </div>
-            </div>    
-            <div class="searchContainer" onclick="closeSearch()"></div> 
-            `;
             
             // Select the search background container and insert the search box HTML after it
             const searchBackground = document.querySelector('#searchModule');
@@ -158,12 +136,7 @@
     </script>
 
 <!---------------------------------------------------------- sidebar ------------------------------------------------------------------->
-    <div id="sidebar" class="tagsSidebar" style="left: -100vw;">
-        <h2>Tags</h2>
-        <ul>
-            <?php include 'php/tagsDisplay.php'; ?>
-        </ul>
-    </div>  
+   
     <div class="sidebarContainer" onclick="closecategory()"></div>
     <script>
         function showcategory() {

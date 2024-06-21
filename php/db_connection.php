@@ -1,7 +1,7 @@
 <?php
 $host = "localhost"; // Your host name
 $username = "root"; // Your database username
-$password = "";// Your database password
+$password = "PythonisSucks98";// Your database password
 $database = "ToastDB"; // Your database name
 
 // Create connection

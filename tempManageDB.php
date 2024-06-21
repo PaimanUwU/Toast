@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "PythonisSucks98";
 $dbname = "ToastDB";
 
 // Create connection

@@ -8,22 +8,34 @@ $query = "SELECT * FROM TAGS";
 // Execute the query
 $result = mysqli_query($connection, $query);
 
-// Check if there are any rows returned
-if (mysqli_num_rows($result) > 0) {
-    // Output the HTML markup for the tags
+$rows = [];
 
-    // Loop through each row to display the tags
-    while ($row = mysqli_fetch_assoc($result)) {
-        $tagID = $row['Tag_ID'];
-        $tagName = $row['Tag_Category'];
-        // Generate HTML markup for each tag
-        echo '<li><a href="corresponding_to_the_tags.php?tag_id=' . $tagID . '" class="tagItem">' . $tagName . '</a></li>';
+$isEmpty = mysql_num_rows($result) > 0 ? false : true;
+
+if(!$isEmpty){
+    while($row = mysqli_fetch_assoc($result)){
+        $rows[] = $row;
     }
-} else {
-    // If no tags are found, display a message
-    echo 'No tags found.';
 }
 
-// Close the database connection
-mysqli_close($connection);
+?>
+
+
+<?php if($isEmpty) : ?>
+
+<div>No Tags Found</div>
+<?php else : ?>
+    <?php foreach($rows as $row): ?>
+        <li>
+            <a href="corresponding_to_the_tags.php?tag_id=<?= $row['Tag_ID'] ?>" 
+            class="tagItem"> <?= $row['Tag_Category'] ?>
+            </a>
+        </li>
+    <?php endforeach ?>
+<?php endif ?>
+
+
+<?php 
+    mysqli_close($connection);
+
 ?>
