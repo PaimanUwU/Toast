@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="default copy.css">
+<body>
+    <div class="searchContainer" onclick="closeSearch()">
+        <div class="searchBoxControlled">
+            <div class="searchBoxNav">
+                <ul>
+                    <li><a href="#" onclick="closeSearch()"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M384-96 0-480l384-384 68 68-316 316 316 316-68 68Z"/></svg><h3>close search</h3></a></li>
+                </ul>
+            </div>
+            <div class="searchBoxContainer">
+                <form class="searchBoxInputBox" id="searchForm" action="search.php" method="GET">
+                    <input id="bigSearchInputBox" type="text" name="query" placeholder="search...">
+                </form>
+            </div>
+            <hr width="70%" color="#404040" size="1px" border-radius="5px" />
+            <div class="searchResult">
+                <!--results goes here, it will display dynamically -->
+                <li>
+                    <a href="redirect to the postID">
+                        <div class="searchResultContentContainer">
+                            <div class="searchResultTitle">
+                                <img src="2.png" alt="">
+                                <h1>asdfasdfasdf<!--search result--></h1>
+                            </div>
+                            <div class="searchResultCallforAction">
+                                redirect ->
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        const searchModule = document.querySelector('.searchContainer');
+
+        function openSearch() {
+            searchModule.style.display = 'flex';
+        }
+
+        function closeSearch() {
+            searchModule.style.display = 'none';
+        }
+
+        function setupSearch() {
+            const inputBox = document.getElementById('bigSearchInputBox');
+            const resultsContainer = document.querySelector('.searchResult');
+
+            inputBox.addEventListener('input', function() {
+                const query = this.value;
+                if (query.length > 0) {
+                    fetch(`search.php?query=${encodeURIComponent(query)}`)
+                        .then(response => response.json())
+                        .then(data => displayResults(data))
+                        .catch(error => console.error('Error:', error));
+                } else {
+                    resultsContainer.innerHTML = '';
+                }
+            });
+        }
+
+        function displayResults(data) {
+            const resultsContainer = document.querySelector('.searchResult');
+            resultsContainer.innerHTML = '';
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'result-item';
+                div.textContent = item;
+                resultsContainer.appendChild(div);
+            });
+        }
+
+        window.onload = setupSearch;
+    </script>
+    <style>
+        .searchContainer {
+            display: flex;
+        }
+    </style>
+</body>
+</html>

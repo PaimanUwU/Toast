@@ -1,0 +1,8 @@
+.contents {
+    width: 100%; /* Ensure content takes the full width */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 4em;
+    overflow-y: hidden; /* Prevent content overflow */
+}

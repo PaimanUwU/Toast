@@ -1,0 +1,111 @@
+.card2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 60rem;
+    padding-left: auto;
+    padding-right: auto;
+    aspect-ratio: 1; /* Maintain square shape */
+    transition: all 0.3s ease; /* Added transition */
+}
+
+.card2Container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    aspect-ratio: 1; /* Maintain square shape */
+}
+
+.card2OuterControlled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    background-color: transparent;
+    color: #404040;
+    transition: all 0.3s ease;
+    opacity: 0;
+    border-radius: inherit;
+}
+
+.card2PostDetailContainer {
+    width: 100%;
+    display: flex;
+}
+
+.card2PostDetail {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: white;
+    padding: 0.5em 0.5em;
+    border-radius: 5px;
+    margin: 0.5em 0.5em;
+    transition: all 0.3s ease;
+}
+
+.card2ProfileDetail {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.card2Profile h3 {
+    margin: 0 0.4em;
+}
+
+.card2ProfileImage {
+    max-width: 1.5em;
+    max-height: 1.5em;
+    border-radius: 50px;
+    border-style: solid;
+}
+
+.card2PostDetail h1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    max-width: 100%; /* Ensure it doesn't overflow its container */
+    padding-right: 1em; /* Space for the fade-out effect */
+}
+
+.card2PostDetail h1::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1em;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 100%);
+}
+
+.card2Container:hover .card2OuterControlled { /* Changed */
+    opacity: 1; /* Added */
+}
+
+.card2Container:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    border-radius: 9px;
+}
+
+@media (max-width: 975px) {
+    .card2OuterControlled { /* Changed */
+        opacity: 1; /* Added */
+    }
+}

@@ -1,0 +1,51 @@
+.card1{
+    max-width: 600px;
+    max-height: 140px;
+    text-decoration: none;
+}
+
+.card1Controlled {
+    display: flex;
+    align-items: flex-start;
+    background-color: white;
+    padding: 0.5em 0.5em;
+    border-radius: 5px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #404040;
+}
+
+.card1Controlled:hover {
+    background-color: gainsboro;
+}
+.card1Profile {
+    display: flex;
+    align-items: center;
+    margin: 0 1em;
+    gap: 0.5em;
+}
+
+.card1Profile h3 {
+    margin: 0 0.4em;
+}
+
+
+
+.card1FoodTitle {
+    margin: 0 1em;
+}
+
+.card1Likes {
+    margin: 0 1em;
+}
+
+.card1FoodImage {
+    max-height: 140px;
+    border-radius: 5px;
+}
+
+.card1ProfileImage {
+    max-width: 2em;
+    border-radius: 50px;
+    border-style: solid;
+}
