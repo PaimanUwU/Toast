@@ -233,7 +233,7 @@ h3 {
     background-color: var(--background-default);
     flex-direction: column;
     padding: 0 1em;
-    padding-bottom: 2em;
+    padding-bottom: 4em;
     gap: 3em;
     box-sizing: border-box; /* Include padding within the width */
     overflow-y: hidden;

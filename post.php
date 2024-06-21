@@ -72,9 +72,11 @@ if ($id > 0) {
             }
             $isLoggedIn = true;
             $likeButton = "onclick=like()"; 
+            $commentForm = "style=display:flex";
         } else {
             $isLoggedIn = false;
             $likeButton = "href=login.php"; 
+            $commentForm = "style=display:none";
         }
     } 
 
@@ -393,7 +395,6 @@ if ($id > 0) {
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#404040"><path d="M480-288q60 0 110.5-31t79.5-84H290q29 53 79.5 84T480-288ZM326-525l34-34 34 34 34-34-68-68-68 68 34 34Zm240 0 34-34 34 34 34-34-68-68-68 68 34 34ZM480-96q-79 0-149-30t-122.5-82.5Q156-261 126-331T96-480q0-80 30-149.5t82.5-122Q261-804 331-834t149-30q80 0 149.5 30t122 82.5Q804-699 834-629.5T864-480q0 79-30 149t-82.5 122.5Q699-156 629.5-126T480-96Zm0-384Zm0 312q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Z"/></svg>    
                                 <span id="postLikeCount" style="font-weight: bold;"><?php echo $postLikes; ?></span>                    
                             </a>
-                            
                         </div>
                         <div>
                             <h1 class="postTitle"><?php echo $postTitle; ?></h1>
@@ -426,6 +427,10 @@ if ($id > 0) {
                             TODO: repair div
                         -->
                         <h1>Comments</h1>
+                        <form <?php echo $commentForm; ?> action="php/addCommentPost.php?id=<?php echo $postID; ?>&profileID=<?php echo $ProfileID; ?>" method="POST" class="commentForm">
+                            <input class="commentInput" type="text" name="comment" placeholder="Write a comment...">
+                            <input class="commentSubmitButton" type="submit" name="submit" value="Submit">
+                        </form>
                         <?php include 'php/comment_Display.php'; ?>
                         
                     </div>
