@@ -1,7 +1,10 @@
 <?php
- $pageTitle = "Home";
+ $pageTitle = "Dashboard";
 
  ob_start();
+
+ //include
+ //select bla bla blae
  
  ?>
 
@@ -144,7 +147,6 @@
                 }
             });
         });
-
     </script>
 
 <?php
