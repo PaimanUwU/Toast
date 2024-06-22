@@ -77,5 +77,5 @@ ob_start();
 <?php
 $pageScript = ob_get_clean();
 
-include '../Layout/Layout.php';
+include '../layout/Layout.php';
 ?>
