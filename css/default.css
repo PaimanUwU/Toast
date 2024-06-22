@@ -53,7 +53,7 @@ h3 {
     transition: all 0.3s ease;
     left: 0;
     right: 0;
-    padding: 1em 0;
+    padding: 1em 1em;
     margin-left: auto;
     margin-right: auto;
 }
@@ -118,8 +118,9 @@ h3 {
 .accountbutton, 
 .backbutton, 
 .historyButton, 
-.createButton  {
-    margin: 0.5em;
+.createButton,
+.loginButton {
+    margin: 0.5em 0.5em;
     height: 100%;
     display: flex;
     align-items: center;

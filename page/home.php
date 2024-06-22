@@ -4,6 +4,8 @@ $showTags = true;
 $showNavBar = true;
 $currentPage = "home.php";
 
+include '../php/session_Maker.php';
+
 ob_start();
 
 ?>

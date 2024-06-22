@@ -3,6 +3,9 @@ $pageTitle = "Toast/Register";
 $showTags = false;
 $showNavBar = false;
 
+$redirect = $_GET['redirect'];
+$currentPage = $_GET['currentPage'];
+
 include '../php/session_Maker.php';
 
 ob_start();
@@ -41,11 +44,11 @@ ob_start();
                     <input class="formInputBox" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
                 </div>
             </div>
-            <p>Already have an account? <a href="login.php">Login</a></p>
+            <p>Already have an account? <a href="../page/login.php?redirect=<?php echo $redirect;?>&currentPage=<?php echo $currentPage;?>">Login</a></p>
         </div>
         <input class="formSubmitButton" type="submit" value="Register">
     </form>
-    <div class="backButton"><a href="../index.php"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#404040"><path d="m252-176-74-76 227-228-227-230 74-76 229 230 227-230 74 76-227 230 227 228-74 76-227-230-229 230Z"/></svg><h3>Back to homepage</h3></a></div>
+    <div class="backButton"><a href="../index.php?redirect=goback&currentPage=<?php echo $currentPage;?>""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#404040"><path d="m252-176-74-76 227-228-227-230 74-76 229 230 227-230 74 76-227 230 227 228-74 76-227-230-229 230Z"/></svg><h3>Go Back</h3></a></div>
 </div>
 
 <?php

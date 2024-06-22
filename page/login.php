@@ -85,12 +85,12 @@ ob_start();
                 </div>
             </div>
             
-            <p>Don't have an account? <a href="page/register.php">Register</a></p>
+            <p>Don't have an account? <a href="../page/register.php?redirect=<?php echo $redirect;?>&currentPage=<?php echo $currentPage;?>">Register</a></p>
         </div>
         
         <input class="formSubmitButton" type="submit" value="Login">
     </form>
-    <div class="backButton"><a href="../index.php?redirect=goback&currentPage=<?php echo $currentPage;?>""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#404040"><path d="m252-176-74-76 227-228-227-230 74-76 229 230 227-230 74 76-227 230 227 228-74 76-227-230-229 230Z"/></svg><h3>Back to homepage</h3></a></div>
+    <div class="backButton"><a href="../index.php?redirect=goback&currentPage=<?php echo $currentPage;?>""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#404040"><path d="m252-176-74-76 227-228-227-230 74-76 229 230 227-230 74 76-227 230 227 228-74 76-227-230-229 230Z"/></svg><h3>Go Back</h3></a></div>
 </div>
 <?php
 $pageContents = ob_get_clean();
