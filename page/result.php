@@ -2,7 +2,9 @@
 $pageTitle = "Toast/Search Result";
 $showTags = true;
 $showNavBar = true;
-$currentPage = "setting";
+
+$searchQuery = $_GET['searchQuery'];
+$currentPage = "result.php?searchQuery=$searchQuery";
 
 include '../php/session_Maker.php';
 
@@ -22,7 +24,7 @@ ob_start();
 <div class="sectionControlled">
     <div class="sectionControlledHeader">    
         <div class="headerContainer"><h2>Search Results</h2> 
-            <div id="showSearchInput"><h3>showing results for: </h3> <em><?php echo $_POST['searchQuery']; ?></em></div>
+            <div id="showSearchInput"><h3>showing results for: </h3> <em><?php echo $searchQuery; ?></em></div>
         </div>
     </div>
     <div class="result">

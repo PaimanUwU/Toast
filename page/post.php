@@ -87,7 +87,7 @@ if ($id > 0) {
 $pageTitle = "Toast/$postTitle";
 $showTags = true;
 $showNavBar = true;
-$currentPage = "post";
+$currentPage = "post.php?id=$postID";
 
 ob_start();
 ?>

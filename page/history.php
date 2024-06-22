@@ -2,7 +2,7 @@
 $pageTitle = "Toast/History";
 $showTags = true;
 $showNavBar = true;
-$currentPage = "history";
+$currentPage = "history.php";
 
 include '../php/session_Maker.php';
 

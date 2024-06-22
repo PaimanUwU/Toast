@@ -2,7 +2,7 @@
 $pageTitle = "Toast/Profile";
 $showTags = false;
 $showNavBar = true;
-$currentPage = "profile";
+$currentPage = "profile.php";
 
 include '../php/session_Maker.php';
 

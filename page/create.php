@@ -2,7 +2,7 @@
 $pageTitle = "Toast/Create";
 $showTags = false;
 $showNavBar = true;
-$currentPage = "create";
+$currentPage = "create.php";
 
 include '../php/session_Maker.php';
 

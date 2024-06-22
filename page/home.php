@@ -2,7 +2,7 @@
 $pageTitle = "Home";
 $showTags = true;
 $showNavBar = true;
-$currentPage = "home";
+$currentPage = "home.php";
 
 ob_start();
 

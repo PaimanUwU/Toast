@@ -2,7 +2,6 @@
 $pageTitle = "Toast/Register";
 $showTags = false;
 $showNavBar = false;
-$currentPage = "register";
 
 include '../php/session_Maker.php';
 
