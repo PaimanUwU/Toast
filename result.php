@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/result.css">
     <link rel="stylesheet" href="assets/cards/result card/resultCard.css">
+    
 
     <!--session-->
     <? include 'php/session_Maker.php'; ?>

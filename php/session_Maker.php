@@ -7,5 +7,9 @@ if (isset($_SESSION["id"]) && isset($_SESSION["email"])) {
     $ProfileID = $_SESSION["id"];
     $ProfileEmail = $_SESSION["email"];
     $isLoggedIn = $_SESSION["loggedin"];
+} else {
+    $ProfileID = 0;
+    $ProfileEmail = "";
+    $isLoggedIn = false;
 }
 ?>
