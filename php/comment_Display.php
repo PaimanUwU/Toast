@@ -35,8 +35,8 @@ for ($i = 0; $i < count($commentArray); $i++):
 ?>
 
 <div class="commentContainer">
-    <a class="commentProfile" href="profileVisit.php?id=<?php echo $comment_profile_id; ?>">
-        <img class="commentProfileImage" src="data/profileImages/GUID-<?php echo $comment_profile_image; ?>.png" alt="">
+    <a class="commentProfile" href="../page/profileVisit.php?id=<?php echo $comment_profile_id; ?>">
+        <img class="commentProfileImage" src="../data/profileImages/GUID-<?php echo $comment_profile_image; ?>.png" alt="">
         <h3><?php echo $comment_profile_name; ?></h3>
     </a>
     <div class="comment">

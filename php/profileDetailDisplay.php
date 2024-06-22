@@ -36,7 +36,7 @@ mysqli_close($connection);
             function logout() {
                 var confirmed = window.confirm("Are you sure you want to logout?");
                 if (confirmed) {
-                    window.location.href = "logout.php";
+                    window.location.href = "../php/logout.php";
                 }
             }
         </script>
@@ -44,7 +44,7 @@ mysqli_close($connection);
 </div>
 <div class="profileHeaderMiddle">
     <div class="profileImage">
-        <img src="data/profileImages/GUID-<?php echo $profileImage ?>.png" alt="profile image">
+        <img src="../data/profileImages/GUID-<?php echo $profileImage ?>.png" alt="profile image">
     </div>
     <div class="profileHeaderMiddleRight">
         <div class="profileName">

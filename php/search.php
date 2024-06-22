@@ -36,10 +36,10 @@ $results = $allResults;
     <ul>
         <?php foreach ($results as $recipe): ?>
             <li>
-            <a href="post.php?id=<?php echo htmlspecialchars($recipe['postID'], ENT_QUOTES, 'UTF-8'); ?>">
+            <a href="../page/post.php?id=<?php echo htmlspecialchars($recipe['postID'], ENT_QUOTES, 'UTF-8'); ?>">
                     <div class="searchResultContentContainer">
                         <div class="searchResultTitle">
-                            <img src="data/postImages/GPID-<?php echo htmlspecialchars($recipe['image'], ENT_QUOTES, 'UTF-8'); ?>.png" alt="">
+                            <img src="../data/postImages/GPID-<?php echo htmlspecialchars($recipe['image'], ENT_QUOTES, 'UTF-8'); ?>.png" alt="">
                             <h1><?php echo htmlspecialchars($recipe['title'], ENT_QUOTES, 'UTF-8'); ?></h1>
                         </div>
                         <div class="searchResultCallforAction">

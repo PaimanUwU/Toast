@@ -29,14 +29,14 @@ foreach ($recipes as $recipe):
     <a href="post.php?id=<?php echo htmlspecialchars($recipe['postID'], ENT_QUOTES, 'UTF-8'); ?>" class="card2Container">
         <style>
             .card2Container{
-                background-image: url(data/postImages/GPID-<?php echo htmlspecialchars($recipe['food_image'], ENT_QUOTES, 'UTF-8'); ?>.png);
+                background-image: url(../data/postImages/GPID-<?php echo htmlspecialchars($recipe['food_image'], ENT_QUOTES, 'UTF-8'); ?>.png);
             }
         </style>
         <div class="card2OuterControlled">
             <div class="card2PostDetailContainer">
                 <div class="card2PostDetail">
                     <div class="card2ProfileDetail">
-                        <img class="card2ProfileImage" src="data/profileImages/GUID-<?php echo htmlspecialchars($recipe['profile_image'], ENT_QUOTES, 'UTF-8'); ?>.png"  alt="">
+                        <img class="card2ProfileImage" src="../data/profileImages/GUID-<?php echo htmlspecialchars($recipe['profile_image'], ENT_QUOTES, 'UTF-8'); ?>.png"  alt="">
                         <h3><?php echo htmlspecialchars($recipe['username'], ENT_QUOTES, 'UTF-8'); ?></h3>
                     </div>
                     <div>

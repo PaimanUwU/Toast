@@ -33,12 +33,12 @@ for ($i = 0; $i < $recipeCount; $i++):
 <div class="card1">
     <a href="post.php?id=<?php echo htmlspecialchars($recipe['postID'], ENT_QUOTES, 'UTF-8'); ?>" class="card1Controlled">
         <div class="card1Image">
-            <img class="card1FoodImage" src="data/postImages/GPID-<?php echo htmlspecialchars($recipe['food_image'], ENT_QUOTES, 'UTF-8'); ?>.png" alt=""> 
+            <img class="card1FoodImage" src="../data/postImages/GPID-<?php echo htmlspecialchars($recipe['food_image'], ENT_QUOTES, 'UTF-8'); ?>.png" alt=""> 
         </div>
         <div>
             <div class="card1Profile">
                 <div>
-                    <img class="card1ProfileImage" src="data/profileImages/GUID-<?php echo htmlspecialchars($recipe['profile_image'], ENT_QUOTES, 'UTF-8'); ?>.png" alt="">
+                    <img class="card1ProfileImage" src="../data/profileImages/GUID-<?php echo htmlspecialchars($recipe['profile_image'], ENT_QUOTES, 'UTF-8'); ?>.png" alt="">
                 </div>
                 <div>
                     <h3><?php echo htmlspecialchars($recipe['username'], ENT_QUOTES, 'UTF-8'); ?></h3>

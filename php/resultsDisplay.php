@@ -25,9 +25,9 @@ mysqli_close($connection);
 
 foreach ($recipes as $recipe):
 ?>
-<a href="post.php?id=<?php echo htmlspecialchars($recipe['postID'], ENT_QUOTES, 'UTF-8'); ?>">
+<a href="../page/post.php?id=<?php echo htmlspecialchars($recipe['postID'], ENT_QUOTES, 'UTF-8'); ?>">
     <div class="resultContainer">
-        <img src="data/postImages/GPID-<?php echo htmlspecialchars($recipe['food_image'], ENT_QUOTES, 'UTF-8'); ?>.png" alt="">
+        <img src="../data/postImages/GPID-<?php echo htmlspecialchars($recipe['food_image'], ENT_QUOTES, 'UTF-8'); ?>.png" alt="">
         <div class="resultContent">
             <div class="resultTitle">
                 <h1><?php echo htmlspecialchars($recipe['title'], ENT_QUOTES, 'UTF-8'); ?></h1>

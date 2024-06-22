@@ -17,7 +17,7 @@ if (mysqli_num_rows($result) > 0) {
         $tagID = $row['Tag_ID'];
         $tagName = $row['Tag_Category'];
         // Generate HTML markup for each tag
-        echo '<li><a href="corresponding_to_the_tags.php?tag_id=' . $tagID . '" class="tagItem">' . $tagName . '</a></li>';
+        echo '<li><a href="../page/tags.php?id=' . $tagID . '" class="tagItem">' . $tagName . '</a></li>';
     }
 } else {
     // If no tags are found, display a message
