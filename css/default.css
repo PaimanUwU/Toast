@@ -472,23 +472,7 @@ h3 {
 }
 
 @media (max-width: 975px) {
-    .menubutton {
-        display: flex;
-        align-items: center;
-    }
-    
-    .actionButtonContainer {
-        display: flex;
-        align-items: center;
-    }
 
-    .leftColumn {
-        display: none;
-    }
-    .rightColumn {
-        width: 100%; /* Ensure right column takes the full width */
-        padding: 10px 20px; /* Adjust padding as needed */
-    }
 }
 
 @media (min-width: 976px) {

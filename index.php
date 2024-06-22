@@ -1,6 +1,5 @@
 <?php
 // index will be use for page router
-
 $redirect = $_GET['redirect'] ?? null;
 $currentPage = $_GET['currentPage'] ?? null;
 

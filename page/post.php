@@ -168,16 +168,18 @@ ob_start();
 document.addEventListener('DOMContentLoaded', function() {
     var postImage = document.getElementById('postImage');
     var postImageInner = document.getElementById('postImageInner');
-
+    var gradient = document.getElementById('background');
     window.addEventListener('scroll', function() {
         console.log('scroll event fired'); // Check if this logs
 
         if (window.scrollY > 260) {
             postImage.classList.add('scrolled');
-            postImageInner.classList.add('scrolled');   
+            postImageInner.classList.add('scrolled'); 
+            gradient.classList.add('scrolled');  
         } else {
             postImage.classList.remove('scrolled');
             postImageInner.classList.remove('scrolled');
+            gradient.classList.remove('scrolled');
         }
     });
 });
