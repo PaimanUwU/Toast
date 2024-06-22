@@ -526,8 +526,10 @@ if ($id > 0) {
                     navbar.classList.add('scrolled');
                     sidebar.classList.add('scrolled');
                     background.classList.add('scrolled');
-                    postImage.classList.add('scrolled');
-                    postImageInner.classList.add('scrolled');
+                    if (window.scrollY > 260) {
+                        postImage.classList.add('scrolled');
+                        postImageInner.classList.add('scrolled');   
+                    }  
                 } else {
                     navbar.classList.remove('scrolled');
                     sidebar.classList.remove('scrolled');
