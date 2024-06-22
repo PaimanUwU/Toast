@@ -10,7 +10,7 @@ $result = mysqli_query($connection, $query);
 
 $rows = [];
 
-$isEmpty = mysql_num_rows($result) > 0 ? false : true;
+$isEmpty = mysqli_num_rows($result) > 0 ? false : true;
 
 if(!$isEmpty){
     while($row = mysqli_fetch_assoc($result)){
