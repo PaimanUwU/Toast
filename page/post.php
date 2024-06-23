@@ -1,4 +1,6 @@
 <?php
+
+
 require '../php/db_connection.php';
 include '../php/session_Maker.php';
 
@@ -76,7 +78,7 @@ if ($id > 0) {
             $commentForm = "style=display:flex";
         } else {
             $isLoggedIn = false;
-            $likeButton = "href=login.php"; 
+            $likeButton = "href=../index.php?redirect=auth&currentPage=post.php?id=$postID"; 
             $commentForm = "style=display:none";
         }
     } 

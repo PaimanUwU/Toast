@@ -176,7 +176,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             <?php include '../php/tagsDisplay.php'; ?>
         </ul>
     </div>  
-    <div  id="sideBar" class="sidebarContainer" onclick="closecategory()" style="display: <?php echo $tagsVisibility; ?>;"></div>
+    <div  id="sideBar" class="sidebarContainer" onclick="closecategory()" ></div>
     <script>
         function showcategory() {
             const openbutton = document.querySelector('.menubutton');
@@ -236,12 +236,12 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     <div style="display: <?php echo $navBarVisibility; ?>" class="nav" id="navbar">
         <div class="headerleft">
             <div class="actionButtonContainer">
-                <div class="backbutton" style="display: <?php echo $tagsVisibility; ?>;">
+                <div class="backbutton" >
                     <ul>
                         <li onclick="closecategory()"><svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="34px" fill="#404040"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg><a href="#"></a></li>
                     </ul>
                 </div>
-                <div class="menubutton" style="display: <?php echo $tagsVisibility; ?>;">
+                <div class="menubutton" >
                     <ul>
                         <li onclick="showcategory()"><svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="34px" fill="#404040"><path d="M144-264v-72h672v72H144Zm0-180v-72h672v72H144Zm0-180v-72h672v72H144Z"/></svg><a href="#"></a></li>
                     </ul>
@@ -322,7 +322,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             .leftColumn, .rightColumn, .tagsSidebar, .menubutton {
                 display: <?php echo $tagsVisibility; ?>;
             } 
-
+            
             @media (max-width: 975px) {
                 .menubutton {
                     display: <?php echo $tagsVisibility; ?>;
