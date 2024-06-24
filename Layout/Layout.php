@@ -15,6 +15,74 @@ ob_start();
 $tagmenu = ob_get_clean();
 
 
+ob_start();
+?>
+
+<div  id="tagsBar" class="tagsSidebar" style="left: -100vw; display: <?php echo $tagsVisibility; ?>;">
+<h2>Tags</h2>
+<ul>
+    <?php include '../php/tagsDisplay.php'; ?>
+</ul>
+</div>  
+<div  id="sideBar" class="sidebarContainer" onclick="closecategory()" ></div>
+<script>
+function showcategory() {
+    const openbutton = document.querySelector('.menubutton');
+    const closebutton = document.querySelector('.backbutton');
+    const background = document.querySelector('.sidebarContainer');
+
+    closebutton.style.display = 'flex';
+    openbutton.style.display = 'none';
+    background.style.display = 'flex';
+
+    const sidebar = document.querySelector('.tagsSidebar');
+    sidebar.style.left = '0'; // Move sidebar to the left (open position)
+}
+
+function closecategory() {
+    const openbutton = document.querySelector('.menubutton');
+    const closebutton = document.querySelector('.backbutton');
+    const background = document.querySelector('.sidebarContainer');
+
+    closebutton.style.display = 'none';
+    openbutton.style.display = 'flex';  
+    background.style.display = 'none';
+    
+    const sidebar = document.querySelector('.tagsSidebar');
+    sidebar.style.left = '-100vw'; // Move sidebar to the left beyond viewport (closed position)
+}
+window.addEventListener('DOMContentLoaded', function() {
+    const sidebarContainer = document.querySelector('.sidebarContainer');
+    const openbutton = document.querySelector('.menubutton');
+    const closebutton = document.querySelector('.backbutton');
+    const background = document.querySelector('.sidebarContainer');
+
+    function toggleSidebar() {
+        const viewportWidth = window.innerWidth;
+        if (viewportWidth > 976) {
+            sidebarContainer.style.display = 'none';
+
+            closebutton.style.display = 'none';
+            openbutton.style.display = 'flex';  
+            background.style.display = 'none';
+            
+            const sidebar = document.querySelector('.tagsSidebar');
+            sidebar.style.left = '-100vw'; // Move sidebar to the left beyond viewport (closed position)
+                }
+    }
+
+    // Initial call to toggleSidebar to set the initial state based on viewport width
+    toggleSidebar();
+
+    // Listen for window resize events and re-evaluate the sidebar visibility
+    window.addEventListener('resize', toggleSidebar);
+});
+</script>
+
+<?php
+$tagsSidebar = ob_get_clean();
+
+
 
 
 if ($showTags) {
@@ -22,6 +90,7 @@ if ($showTags) {
 } else {
     $tagsVisibility = "none";
     $tagmenu = "";
+    $tagsSidebar = "";
 }
 
 if ($showNavBar) {
@@ -189,66 +258,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         });
     </script>
 
-    <div  id="tagsBar" class="tagsSidebar" style="left: -100vw; display: <?php echo $tagsVisibility; ?>;">
-        <h2>Tags</h2>
-        <ul>
-            <?php include '../php/tagsDisplay.php'; ?>
-        </ul>
-    </div>  
-    <div  id="sideBar" class="sidebarContainer" onclick="closecategory()" ></div>
-    <script>
-        function showcategory() {
-            const openbutton = document.querySelector('.menubutton');
-            const closebutton = document.querySelector('.backbutton');
-            const background = document.querySelector('.sidebarContainer');
-
-            closebutton.style.display = 'flex';
-            openbutton.style.display = 'none';
-            background.style.display = 'flex';
-
-            const sidebar = document.querySelector('.tagsSidebar');
-            sidebar.style.left = '0'; // Move sidebar to the left (open position)
-        }
-
-        function closecategory() {
-            const openbutton = document.querySelector('.menubutton');
-            const closebutton = document.querySelector('.backbutton');
-            const background = document.querySelector('.sidebarContainer');
-
-            closebutton.style.display = 'none';
-            openbutton.style.display = 'flex';  
-            background.style.display = 'none';
-            
-            const sidebar = document.querySelector('.tagsSidebar');
-            sidebar.style.left = '-100vw'; // Move sidebar to the left beyond viewport (closed position)
-        }
-        window.addEventListener('DOMContentLoaded', function() {
-            const sidebarContainer = document.querySelector('.sidebarContainer');
-            const openbutton = document.querySelector('.menubutton');
-            const closebutton = document.querySelector('.backbutton');
-            const background = document.querySelector('.sidebarContainer');
-
-            function toggleSidebar() {
-                const viewportWidth = window.innerWidth;
-                if (viewportWidth > 976) {
-                    sidebarContainer.style.display = 'none';
-
-                    closebutton.style.display = 'none';
-                    openbutton.style.display = 'flex';  
-                    background.style.display = 'none';
-                    
-                    const sidebar = document.querySelector('.tagsSidebar');
-                    sidebar.style.left = '-100vw'; // Move sidebar to the left beyond viewport (closed position)
-                        }
-            }
-
-            // Initial call to toggleSidebar to set the initial state based on viewport width
-            toggleSidebar();
-
-            // Listen for window resize events and re-evaluate the sidebar visibility
-            window.addEventListener('resize', toggleSidebar);
-        });
-    </script>
+    <?php echo $tagsSidebar; ?>
 
 
 
@@ -371,6 +381,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
 
 
+    <?php echo $pageScript; ?>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -389,7 +400,6 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         });
 
     </script>
-    <?php echo $pageScript; ?>
 
 
 

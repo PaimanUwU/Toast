@@ -80,6 +80,8 @@ ob_start();
                 </a>
             <?php
                 }
+            } else {
+                echo "No history found.";
             }
             mysqli_close($connection);
             

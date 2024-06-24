@@ -65,7 +65,6 @@ if ($id > 0) {
             }
         }
 
-        // get is logged in
         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {        
             $query = "SELECT Post_isLike FROM Post_History WHERE Post_ID = $postID AND Profile_ID = $ProfileID";
             $result = mysqli_query($connection, $query);
@@ -73,6 +72,7 @@ if ($id > 0) {
             if ($result && $row = mysqli_fetch_assoc($result)) {
                 $isLike = $row['Post_isLike']; // Corrected column name
             }
+
             $isLoggedIn = true;
             $likeButton = "onclick=like()";
             $commentForm = "style=display:flex";
@@ -136,7 +136,7 @@ ob_start();
                 <p class="postDesc"><?php echo $postDesc; ?></p>
             </div>
         </div>
-        <a class="postProfile" href="profileVisit.php?id=<?php echo $postProfileID; ?>'">
+        <a class="postProfile" href="profileVisit.php?id=<?php echo $postProfileID; ?>">
             <!--TODO: add follow button-->
             <img src="../data/profileImages/GUID-<?php echo $profileImage; ?>.png" alt="profile image" class="postProfileImage">
             <div class="profileDetail">
@@ -229,7 +229,7 @@ function openMenu() {
 
 function updateLikes(action) {
     var postID = <?php echo json_encode($postID); ?>;
-    fetch(`php/updateLike.php?action=${encodeURIComponent(action)}&id=${encodeURIComponent(postID)}`, {
+    fetch(`../php/updateLike.php?action=${encodeURIComponent(action)}&id=${encodeURIComponent(postID)}`, {
         method: 'GET'
     })
     .then(response => {
@@ -245,7 +245,7 @@ function updateLikes(action) {
         console.error('Fetch Error:', error);
     });
 
-    fetch(`php/updateLikesOnHistory.php?action=${encodeURIComponent(action)}&id=${encodeURIComponent(postID)}`, {
+    fetch(`../php/updateLikesOnHistory.php?action=${encodeURIComponent(action)}&id=${encodeURIComponent(postID)}`, {
         method: 'GET'
     })
     .then(response => {
