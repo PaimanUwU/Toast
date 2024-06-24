@@ -1,8 +1,27 @@
 <?php
+ob_start();
+?>
+<div class="backbutton" >
+    <ul>
+        <li onclick="closecategory()"><svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="34px" fill="#404040"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg><a href="#"></a></li>
+    </ul>
+</div>
+<div class="menubutton" >
+    <ul>
+        <li onclick="showcategory()"><svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="34px" fill="#404040"><path d="M144-264v-72h672v72H144Zm0-180v-72h672v72H144Zm0-180v-72h672v72H144Z"/></svg><a href="#"></a></li>
+    </ul>
+</div>
+<?php
+$tagmenu = ob_get_clean();
+
+
+
+
 if ($showTags) {
-    $tagsVisibility = "flex";
+    $tagsVisibility = "flex";;
 } else {
     $tagsVisibility = "none";
+    $tagmenu = "";
 }
 
 if ($showNavBar) {
@@ -236,16 +255,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     <div style="display: <?php echo $navBarVisibility; ?>" class="nav" id="navbar">
         <div class="headerleft">
             <div class="actionButtonContainer">
-                <div class="backbutton" >
-                    <ul>
-                        <li onclick="closecategory()"><svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="34px" fill="#404040"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg><a href="#"></a></li>
-                    </ul>
-                </div>
-                <div class="menubutton" >
-                    <ul>
-                        <li onclick="showcategory()"><svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="34px" fill="#404040"><path d="M144-264v-72h672v72H144Zm0-180v-72h672v72H144Zm0-180v-72h672v72H144Z"/></svg><a href="#"></a></li>
-                    </ul>
-                </div>
+                <?php echo $tagmenu; ?>
                 <div class="createButton">
                     <ul>
                         <li><a href="../index.php?redirect=create&currentPage='<?php echo $currentPage; ?>"><svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="34px" fill="#404040"><path d="M447-293h67v-153h153v-67H514v-154h-67v154H293v67h154v153Zm33.28 187q-77.19 0-145.35-29.26-68.15-29.27-119.29-80.5Q164.5-267 135.25-335.05 106-403.09 106-480.46q0-77.45 29.26-145.11 29.27-67.65 80.5-118.79Q267-795.5 335.05-824.75 403.09-854 480.46-854q77.45 0 145.11 29.26 67.65 29.27 118.79 80.5Q795.5-693 824.75-625.19T854-480.28q0 77.19-29.26 145.35-29.27 68.15-80.5 119.29Q693-164.5 625.19-135.25T480.28-106Zm-.28-67q127.5 0 217.25-89.75T787-480q0-127.5-89.75-217.25T480-787q-127.5 0-217.25 89.75T173-480q0 127.5 89.75 217.25T480-173Zm0-307Z"/></svg></a></li>
@@ -264,7 +274,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             </div>
             <div class="redirectText">
                 <ul>
-                    <li><a class="createButton" href="../index.php?redirect=create&currentPage=<?php echo $currentPage; ?>"><svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="34px" fill="#404040"><path d="M447-293h67v-153h153v-67H514v-154h-67v154H293v67h154v153Zm33.28 187q-77.19 0-145.35-29.26-68.15-29.27-119.29-80.5Q164.5-267 135.25-335.05 106-403.09 106-480.46q0-77.45 29.26-145.11 29.27-67.65 80.5-118.79Q267-795.5 335.05-824.75 403.09-854 480.46-854q77.45 0 145.11 29.26 67.65 29.27 118.79 80.5Q795.5-693 824.75-625.19T854-480.28q0 77.19-29.26 145.35-29.27 68.15-80.5 119.29Q693-164.5 625.19-135.25T480.28-106Zm-.28-67q127.5 0 217.25-89.75T787-480q0-127.5-89.75-217.25T480-787q-127.5 0-217.25 89.75T173-480q0 127.5 89.75 217.25T480-173Zm0-307Z"/></svg><h3> Create Post</h3></a></li>
+                    <li><a class="createButton" href="../index.php?redirect=create&currentPage=<?php echo $currentPage; ?>"><svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="34px" fill="#404040"><path d="M447-293h67v-153h153v-67H514v-154h-67v154H293v67h154v153Zm33.28 187q-77.19 0-145.35-29.26-68.15-29.27-119.29-80.5Q164.5-267 135.25-335.05 106-403.09 106-480.46q0-77.45 29.26-145.11 29.27-67.65 80.5-118.79Q267-795.5 335.05-824.75 403.09-854 480.46-854q77.45 0 145.11 29.26 67.65 29.27 118.79 80.5Q795.5-693 824.75-625.19T854-480.28q0 77.19-29.26 145.35-29.27 68.15-80.5 119.29Q693-164.5 625.19-135.25T480.28-106Zm-.28-67q127.5 0 217.25-89.75T787-480q0-127.5-89.75-217.25T480-787q-127.5 0-217.25 89.75T173-480q0 127.5 89.75 217.25T480-173Zm0-307Z"/></svg><h3> Upload Recipe</h3></a></li>
                     <li><a class="historyButton" href="../index.php?redirect=history&currentPage=<?php echo $currentPage; ?>"><svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="34px" fill="#404040"><path d="M479.39-153Q343-153 247.75-248.5T152.5-481h67q0 107.5 76.26 184.25Q372.01-220 479.35-220 586.5-220 663-296.5t76.5-183.73q0-107.23-76.63-183.5Q586.25-740 478.5-740q-60.17 0-111.13 24.85Q316.41-690.3 281.5-648h104v67h-229v-229h67v129q45-58 110.75-92t144.4-34q67.85 0 127.69 25.95t104.15 70.12q44.31 44.16 70.16 103.55Q806.5-548 806.5-480t-25.85 127.38q-25.85 59.39-70.12 103.65-44.26 44.27-103.68 70.12Q547.43-153 479.39-153Zm99.11-196-131-131.87V-667h67v158l112 112-48 48Z"/></svg><h3> History</h3></a></li> 
 
                 </ul>
