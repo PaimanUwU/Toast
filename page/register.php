@@ -8,6 +8,40 @@ $currentPage = $_GET['currentPage'];
 
 include '../php/session_Maker.php';
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
+
+    if ($password === $confirmPassword) {
+        require '../php/db_connection.php';
+
+        $query = "SELECT * FROM PROFILE WHERE Profile_Email = '$email'";
+
+        $result = mysqli_query($connection, $query);
+    
+        if (mysqli_num_rows($result) > 0) {
+            echo '<script>alert("Account already exists!");</script>';
+        } else {
+            $query = "INSERT INTO PROFILE (Profile_Email, Profile_Password) VALUES (?, ?)";
+
+            $result = mysqli_prepare($connection, $query);
+            mysqli_stmt_bind_param($result, 'ss', $email, $confirmPassword);
+            mysqli_stmt_execute($result);
+    
+            echo '<script>alert("Successfully registered!");</script>'; 
+            header("Location: login.php?redirect=$redirect&currentPage=$currentPage"); 
+            exit;
+        }
+        mysqli_close($connection);
+    } else {
+        echo '<script>alert("Password and confirm password does not matched!");</script>'; 
+        header("Location: register.php?redirect=$redirect&currentPage=$currentPage"); 
+        exit;
+    }
+
+}
+
 ob_start();
 
 ?>
@@ -27,7 +61,7 @@ ob_start();
             <img class="logoSimplified" src="../assets/images/Toast Logo.png" alt="logo">
         </div>
     </div>
-    <form action="register.php" method="post">
+    <form action="register.php?redirect=<?php echo $redirect; ?>&currentPage=<?php echo $currentPage; ?>" method="post">
         <div class="formContainer">
             <div class="formInnerContaier">
                 <h1>Register</h1>
@@ -44,7 +78,7 @@ ob_start();
                     <input class="formInputBox" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
                 </div>
             </div>
-            <p>Already have an account? <a href="../page/login.php?redirect=<?php echo $redirect;?>&currentPage=<?php echo $currentPage;?>">Login</a></p>
+            <p>Already have an account? <a href="login.php?redirect=<?php echo $redirect;?>&currentPage=<?php echo $currentPage;?>">Login</a></p>
         </div>
         <input class="formSubmitButton" type="submit" value="Register">
     </form>

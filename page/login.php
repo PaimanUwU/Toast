@@ -35,10 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ../auth.php?redirect=$redirect&currentPage=$currentPage");
             exit;
         } else {
-            phpAlert("Invalid password!");
+            echo '<script>alert("Wrong password");</script>'; 
         }
     } else {
-        phpAlert("Account does not exist!"); 
+        echo '<script>alert("Account does not exist");</script>'; 
     }
 
     mysqli_stmt_close($stmt);
@@ -70,11 +70,6 @@ ob_start();
             <div class="formInnerContaier">
                 <h1>Login</h1>
                 <p>Enter your email and password to login.</p>
-                <?php
-                function phpAlert($msg) {
-                    echo "$msg";
-                }
-                ?>
             </div>
             <div class="formInnerContaier">
                 <div class="inputContainer">
@@ -85,7 +80,7 @@ ob_start();
                 </div>
             </div>
             
-            <p>Don't have an account? <a href="../page/register.php?redirect=<?php echo $redirect;?>&currentPage=<?php echo $currentPage;?>">Register</a></p>
+            <p>Don't have an account? <a href="register.php?redirect=<?php echo $redirect;?>&currentPage=<?php echo $currentPage;?>">Register</a></p>
         </div>
         
         <input class="formSubmitButton" type="submit" value="Login">

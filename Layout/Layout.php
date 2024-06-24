@@ -345,8 +345,14 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         </style>
     </div>
 
+
+
+
+
+
+    
     <div class="footer">
-        asdfasdf
+        
     </div>
 
 
