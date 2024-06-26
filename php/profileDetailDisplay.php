@@ -9,7 +9,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $profileName = $row['Profile_Name'];
     $profileDesc = $row['Profile_Desc'];
-    $profileImage = $row['Profile_Image_ID'];
+    $profileImage = $row['Profile_Image_Path'];
 
 } else {
     echo "Profile not found.";
@@ -44,7 +44,7 @@ mysqli_close($connection);
 </div>
 <div class="profileHeaderMiddle">
     <div class="profileImage">
-        <img src="../data/profileImages/GUID-<?php echo $profileImage ?>.png" alt="profile image">
+        <img src="<?php echo $profileImage ?>" alt="profile image">
     </div>
     <div class="profileHeaderMiddleRight">
         <div class="profileName">

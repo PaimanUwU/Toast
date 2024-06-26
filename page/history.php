@@ -34,9 +34,9 @@ ob_start();
                         p.Post_Title,
                         p.Post_Desc,
                         p.Post_Likes,
-                        p.Post_Image_ID,
+                        p.Post_Image_Path,
                         pr.Profile_Name,
-                        pr.Profile_Image_ID
+                        pr.Profile_Image_Path
                         FROM 
                             post_history ph
                         JOIN 
@@ -60,14 +60,14 @@ ob_start();
                     $PostTitle = $row['Post_Title'];
                     $PostDesc = $row['Post_Desc'];
                     $PostLikes = $row['Post_Likes'];
-                    $PostImageID = $row['Post_Image_ID'];
+                    $PostImageID = $row['Post_Image_Path'];
                     $ProfileName = $row['Profile_Name'];
-                    $ProfileImageID = $row['Profile_Image_ID'];
+                    $ProfileImageID = $row['Profile_Image_Path'];
             
             ?>
                 <a href="post.php?id=<?php echo $PostID; ?>">
                     <div class="resultContainer">
-                        <img src="../data/postImages/GPID-<?php echo $PostImageID; ?>.png" alt="">
+                        <img src="<?php echo $PostImageID; ?>" alt="">
                         <div class="resultContent">
                             <div class="resultTitle">
                                 <h1><?php echo $PostTitle; ?></h1>

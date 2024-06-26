@@ -68,7 +68,7 @@ window.addEventListener('DOMContentLoaded', function() {
             
             const sidebar = document.querySelector('.tagsSidebar');
             sidebar.style.left = '-100vw'; // Move sidebar to the left beyond viewport (closed position)
-                }
+        }
     }
 
     // Initial call to toggleSidebar to set the initial state based on viewport width
@@ -86,7 +86,7 @@ $tagsSidebar = ob_get_clean();
 
 
 if ($showTags) {
-    $tagsVisibility = "flex";;
+    $tagsVisibility = "flex";
 } else {
     $tagsVisibility = "none";
     $tagmenu = "";
@@ -381,8 +381,6 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
 
 
-    <?php echo $pageScript; ?>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var navbar = document.getElementById('navbar');
@@ -391,15 +389,16 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 console.log('scroll event fired'); // Check if this logs
                 if (window.scrollY > 0) {
                     navbar.classList.add('scrolled');
-                    sidebar.classList.add('scrolled');
+                    //sidebar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
-                    sidebar.classList.remove('scrolled');
+                    //sidebar.classList.remove('scrolled');
                 }
             });
         });
 
     </script>
+    <?php echo $pageScript; ?>
 
 
 

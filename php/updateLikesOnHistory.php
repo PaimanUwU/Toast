@@ -9,7 +9,7 @@ if (isset($_GET['action'], $_GET['id']) && isset($_SESSION["loggedin"]) && $_SES
     
     if ($action === 'like') {
         $query = "UPDATE Post_History SET Post_isLike = 1 WHERE Post_ID = $id AND Profile_ID = $profileID";
-    } else if ($action === 'dislike') {
+    } elseif ($action === 'dislike') {
         $query = "UPDATE Post_History SET Post_isLike = 0 WHERE Post_ID = $id AND Profile_ID = $profileID";
     } else {
         echo "Invalid action.";

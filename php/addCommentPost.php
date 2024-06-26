@@ -11,5 +11,5 @@ $result = mysqli_query($connection, $query);
 
 mysqli_close($connection);
 
-header("Location: ../post.php?id=$postID");
+header("Location: ../page/post.php?id=$postID");
 ?>

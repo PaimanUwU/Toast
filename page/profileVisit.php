@@ -20,7 +20,7 @@ if ($result && $result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $profileName = $row['Profile_Name'];
     $profileDesc = $row['Profile_Desc'];
-    $profileImage = $row['Profile_Image_ID'];
+    $profileImage = $row['Profile_Image_Path'];
 } else {
     echo "Profile not found.";
     exit;
@@ -81,7 +81,7 @@ ob_start();
     </div>
     <div class="profileHeaderMiddle">
         <div class="profileImage">
-            <img src="../data/profileImages/GUID-<?php echo htmlspecialchars($profileImage, ENT_QUOTES, 'UTF-8'); ?>.png" alt="profile image">
+            <img src="<?php echo htmlspecialchars($profileImage, ENT_QUOTES, 'UTF-8'); ?>" alt="profile image">
         </div>
         <div class="profileHeaderMiddleRight">
             <div class="profileName">
@@ -107,7 +107,7 @@ ob_start();
         $query = "SELECT p.Post_ID AS postID, 
         p.Post_Title AS title, 
         p.Post_Image_ID AS food_image, 
-        u.Profile_Image_ID AS profile_image, 
+        u.Profile_Image_Path AS profile_image, 
         u.Profile_Name AS username, 
         p.Post_Likes AS likes
         FROM POST p
@@ -138,14 +138,14 @@ ob_start();
             <a href="../page/post.php?id=<?php echo htmlspecialchars($recipe['postID'], ENT_QUOTES, 'UTF-8'); ?>" class="card2Container">
                 <style>
                     .card2Container {
-                        background-image: url('../data/postImages/GPID-<?php echo htmlspecialchars($recipe['food_image'], ENT_QUOTES, 'UTF-8'); ?>.png');
+                        background-image: url('<?php echo htmlspecialchars($recipe['food_image'], ENT_QUOTES, 'UTF-8'); ?>');
                     }
                 </style>
                 <div class="card2OuterControlled">
                     <div class="card2PostDetailContainer">
                         <div class="card2PostDetail">
                             <div class="card2ProfileDetail">
-                                <img class="card2ProfileImage" src="../data/profileImages/GUID-<?php echo htmlspecialchars($recipe['profile_image'], ENT_QUOTES, 'UTF-8'); ?>.png" alt="">
+                                <img class="card2ProfileImage" src="<?php echo htmlspecialchars($recipe['profile_image'], ENT_QUOTES, 'UTF-8'); ?>" alt="">
                                 <h3><?php echo htmlspecialchars($recipe['username'], ENT_QUOTES, 'UTF-8'); ?></h3>
                             </div>
                             <div>

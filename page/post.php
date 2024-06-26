@@ -1,5 +1,6 @@
 <?php
-
+$showTags = true;
+$showNavBar = true;
 
 require '../php/db_connection.php';
 include '../php/session_Maker.php';
@@ -18,7 +19,7 @@ if ($id > 0) {
         $postTitle = htmlspecialchars($row['Post_Title']);
         $postDesc = htmlspecialchars($row['Post_Desc']);
         $postContent = htmlspecialchars($row['Post_Content']);
-        $postImage = $row['Post_Image_ID'];
+        $postImage = $row['Post_Image_Path'];
         $postLikes = $row['Post_Likes'];
         $postDislike = $row['Post_Dislikes'];
         $postProfileID = $row['Profile_ID'];
@@ -31,7 +32,7 @@ if ($id > 0) {
             $rowProfile = mysqli_fetch_assoc($resultProfile);
 
             $profileName = htmlspecialchars($rowProfile['Profile_Name']);
-            $profileImage = $rowProfile['Profile_Image_ID'];
+            $profileImage = $rowProfile['Profile_Image_Path'];
         }
 
         // Fetch follower count
@@ -69,15 +70,22 @@ if ($id > 0) {
             $query = "SELECT Post_isLike FROM Post_History WHERE Post_ID = $postID AND Profile_ID = $ProfileID";
             $result = mysqli_query($connection, $query);
 
-            if ($result && $row = mysqli_fetch_assoc($result)) {
-                $isLike = $row['Post_isLike']; // Corrected column name
+            if ($result && mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                if ($row['Post_isLike'] == 1) {
+                    $isLike = "true";
+                } else {
+                    $isLike = "false";
+                }
             }
 
-            $isLoggedIn = true;
+            
+            $isLoggedIn = "true";
             $likeButton = "onclick=like()";
             $commentForm = "style=display:flex";
         } else {
-            $isLoggedIn = false;
+            $isLike = "false";
+            $isLoggedIn = "false";
             $likeButton = "href=../index.php?redirect=auth&currentPage=post.php?id=$postID"; 
             $commentForm = "style=display:none";
         }
@@ -93,8 +101,6 @@ if ($id > 0) {
 }
 
 $pageTitle = "Toast/$postTitle";
-$showTags = true;
-$showNavBar = true;
 $currentPage = "post.php?id=$postID";
 
 ob_start();
@@ -110,10 +116,10 @@ ob_start();
 ?>
 <!------------------------------------------Content------------------------------------------>
 <div class="postContainer">
-    <img src="../data/postImages/GPID-<?php echo $postImage; ?>.png" alt="post image" class="postImage" id="postImage">
+    <img src="<?php echo $postImage; ?>" alt="post image" class="postImage" id="postImage">
     <div class="postImageGradient" id="background"></div>
 
-    <img src="../data/postImages/GPID-<?php echo $postImage; ?>.png" alt="post image" class="postImageInner" id="postImageInner">
+    <img src="<?php echo $postImage; ?>" alt="post image" class="postImageInner" id="postImageInner">
 
     <div class="postContainerControlled">
         <!--TODO: add like button, dislike button, report button.-->
@@ -124,7 +130,7 @@ ob_start();
                 </a>
                 <div class="postDropMenu" id="postDropMenu">
                     <a href="../page/deletePost.php?id=<?php echo $postID; ?>">Delete</a></li>
-                    <a href="../page/editPost.php?id=<?php echo $postID; ?>">Edit</a></li>
+                    <a href="../page/edit.php?id=<?php echo $postID; ?>">Edit</a></li>
                 </div>
                 <a class="postLike" id="postLike" <?php echo $likeButton; ?>>
                     <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#404040"><path d="M480-288q60 0 110.5-31t79.5-84H290q29 53 79.5 84T480-288ZM326-525l34-34 34 34 34-34-68-68-68 68 34 34Zm240 0 34-34 34 34 34-34-68-68-68 68 34 34ZM480-96q-79 0-149-30t-122.5-82.5Q156-261 126-331T96-480q0-80 30-149.5t82.5-122Q261-804 331-834t149-30q80 0 149.5 30t122 82.5Q804-699 834-629.5T864-480q0 79-30 149t-82.5 122.5Q699-156 629.5-126T480-96Zm0-384Zm0 312q130 0 221-91t91-221q0-130-91-221t-221-91q-130 0-221 91t-91 221q0 130 91 221t221 91Z"/></svg>    
@@ -138,7 +144,7 @@ ob_start();
         </div>
         <a class="postProfile" href="profileVisit.php?id=<?php echo $postProfileID; ?>">
             <!--TODO: add follow button-->
-            <img src="../data/profileImages/GUID-<?php echo $profileImage; ?>.png" alt="profile image" class="postProfileImage">
+            <img src="<?php echo $profileImage; ?>" alt="profile image" class="postProfileImage">
             <div class="profileDetail">
                 <h2 class="profileName"><?php echo $profileName; ?></h2>
                 <div>
@@ -182,8 +188,9 @@ ob_start();
 <script>
 var likeButton = document.getElementById("postLike");
 var isLiked = <?php echo $isLike; ?>;
+var isLoggedIn = <?php echo $isLoggedIn; ?>;
 
-if (isLiked === 1) {
+if (isLiked === true) {
     likeButton.classList.add('clicked');
 } else {
     likeButton.classList.remove('clicked');
@@ -195,23 +202,20 @@ function like() {
     var newLikes;
     
     // Check if the user is logged in
-    if (<?php echo $isLoggedIn; ?> === 1) {
+    if (isLoggedIn === true) {
         // Proceed with like or dislike functionality
-        if (isLiked === 0) {
-            isLiked = 1;
+        if (isLiked === false) {
+            isLiked = true;
             likeButton.classList.add('clicked');
             newLikes = currentLikes + 1;
             updateLikes('like');
         } else {
-            isLiked = 0;
+            isLiked = false;
             likeButton.classList.remove('clicked');
             newLikes = currentLikes - 1;
             updateLikes('dislike');
         }
         likeCountElement.innerText = newLikes;
-    } else {
-        // Redirect to login.php if the user is not logged in
-        window.location.href = 'login.php';
     }
 }    
 

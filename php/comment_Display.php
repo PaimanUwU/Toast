@@ -30,13 +30,13 @@ for ($i = 0; $i < count($commentArray); $i++):
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $comment_profile_name = $row['Profile_Name'];
-        $comment_profile_image = $row['Profile_Image_ID'];
+        $comment_profile_image = $row['Profile_Image_Path'];
     }
 ?>
 
 <div class="commentContainer">
     <a class="commentProfile" href="../page/profileVisit.php?id=<?php echo $comment_profile_id; ?>">
-        <img class="commentProfileImage" src="../data/profileImages/GUID-<?php echo $comment_profile_image; ?>.png" alt="">
+        <img class="commentProfileImage" src="<?php echo $comment_profile_image; ?>" alt="">
         <h3><?php echo $comment_profile_name; ?></h3>
     </a>
     <div class="comment">

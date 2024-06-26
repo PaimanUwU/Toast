@@ -2,8 +2,8 @@
 require 'db_connection.php';
 
 // Fetch 20 random posts from the database
-$query = "SELECT p.Post_ID AS postID, p.Post_Title AS title, p.Post_Image_ID AS food_image, 
-                 u.Profile_Image_ID AS profile_image, u.Profile_Name AS username, p.Post_Likes AS likes
+$query = "SELECT p.Post_ID AS postID, p.Post_Title AS title, p.Post_Image_Path AS food_image, 
+                 u.Profile_Image_Path AS profile_image, u.Profile_Name AS username, p.Post_Likes AS likes
           FROM POST p
           JOIN PROFILE u ON p.Profile_ID = u.Profile_ID
           ORDER BY RAND()
@@ -29,14 +29,14 @@ foreach ($recipes as $recipe):
     <a href="post.php?id=<?php echo htmlspecialchars($recipe['postID'], ENT_QUOTES, 'UTF-8'); ?>" class="card2Container">
         <style>
             .card2Container{
-                background-image: url(../data/postImages/GPID-<?php echo htmlspecialchars($recipe['food_image'], ENT_QUOTES, 'UTF-8'); ?>.png);
+                background-image: url(<?php echo htmlspecialchars($recipe['food_image'], ENT_QUOTES, 'UTF-8'); ?>);
             }
         </style>
         <div class="card2OuterControlled">
             <div class="card2PostDetailContainer">
                 <div class="card2PostDetail">
                     <div class="card2ProfileDetail">
-                        <img class="card2ProfileImage" src="../data/profileImages/GUID-<?php echo htmlspecialchars($recipe['profile_image'], ENT_QUOTES, 'UTF-8'); ?>.png"  alt="">
+                        <img class="card2ProfileImage" src="<?php echo htmlspecialchars($recipe['profile_image'], ENT_QUOTES, 'UTF-8'); ?>"  alt="">
                         <h3><?php echo htmlspecialchars($recipe['username'], ENT_QUOTES, 'UTF-8'); ?></h3>
                     </div>
                     <div>
