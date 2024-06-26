@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $profileId = "$_SESSION[id]";
     $postLikes = 0;
     $postDislikes = 0;
-    $imagePath = '';
+    $imagePath = $postImagePath;
 
     // Validate form inputs
     if (empty($title) || empty($description) || empty($recipe)) {
