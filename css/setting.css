@@ -6,3 +6,82 @@
     padding-top: 4em;
     overflow-y: hidden; /* Prevent content overflow */
 }
+
+.sectionControlled {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionControlled form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 2em 2em;
+    width: 100%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+    border-radius: 2em;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 2em;
+}
+
+.headerContainer h2 {
+    padding: 0.25em 0.5em;
+    background-color: var(--clr-primary);
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--clr-dark);
+    border-radius: 50px;
+}
+
+.input {
+    height: 4em;
+    width: 100%;
+    padding: 0.5em 3em;
+    border-radius: 1em;
+    border-color: var(--clr-dark);
+    border-style: solid;
+    font-size: 1.2rem;
+}
+
+.submitButton {
+    background-color: var(--clr-primary);
+    color: var(--clr-dark);
+    border-style: none;
+    border-radius: 1em;
+    padding: 0.5em 1em;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    height: 5em;
+    width: 10em;
+}
+
+.submitButton:hover {
+    background-color: var(--clr-primary-darken);
+}
+
+.profileFooter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profileImage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 1em;
+}
+
+#profileFooterAccountSetting {
+    justify-content: flex-end;
+}
+
+#addGap {
+    margin-top: 3em;
+}

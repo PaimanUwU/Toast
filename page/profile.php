@@ -47,7 +47,7 @@ ob_start();
         <h1>My Profile</h1>
         <div class="profileHeaderTopRight">
             <div class="profileHistoryButton"><a href="history.php"><h3>History</h3></a></div>
-            <div class="profileSettingsButton"><a href="setting.php"><h3>Account Settings</h3></a></div>
+            <div class="profileSettingsButton"><a href="setting.php?msg=none"><h3>Account Settings</h3></a></div>
             <div class="logout"><a href="#" onclick="logout()"><h3>Logout</h3></a></div>
             <script>
                 function logout() {

@@ -10,7 +10,7 @@ include '../php/session_Maker.php';
 $postEditID = $_GET['id'];
 $currentProfileID = $_SESSION['id'];
 
-$queryProfile = "SELECT * FROM Profile WHERE Profile_ID = $_SESSION[id]";
+$queryProfile = "SELECT * FROM Profile WHERE Profile_ID = $currentProfileID";
 $resultProfile = mysqli_query($connection, $queryProfile);
 
 if ($resultProfile && mysqli_num_rows($resultProfile) > 0) {
@@ -47,8 +47,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = trim($_POST['description']);
     $recipe = trim($_POST['recipe']);
     $profileId = "$_SESSION[id]";
-    $postLikes = 0;
-    $postDislikes = 0;
     $imagePath = $postImagePath;
 
     // Validate form inputs
