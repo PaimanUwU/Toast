@@ -87,8 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $query = "UPDATE post 
-            SET Post_Title = ?, Post_Desc = ?, Post_Content = ?, Post_Image_Path = ? 
-            WHERE Post_ID = ?";
+              SET Post_Title = ?, Post_Desc = ?, Post_Content = ?, Post_Image_Path = ? 
+              WHERE Post_ID = ?";
     $stmt = mysqli_prepare($connection, $query);
     mysqli_stmt_bind_param($stmt, "ssssi", $title, $description, $recipe, $imagePath, $postEditID);
     mysqli_stmt_execute($stmt);

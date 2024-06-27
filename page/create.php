@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     echo "<alert>Upload successful.</alert>";
-    header("Location: post.php?id=$currentPostId");
+    header("Location: post.php?id=$postId");
 }
 
 mysqli_close($connection);
