@@ -7,9 +7,9 @@ $redirect = $_GET['redirect'];
 $currentPage = $_GET['currentPage'];
 
 
-include '../php/session_Maker.php';
+include 'php/session_Maker.php';
 
-require '../php/db_connection.php'; // Include your database connection
+require 'php/db_connection.php'; // Include your database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_stmt_bind_param($stmt, "s", $email);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
@@ -32,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["id"] = $id;
             $_SESSION["email"] = $email;
 
-            header("Location: ../auth.php?redirect=$redirect&currentPage=$currentPage");
+            header("Location: auth.php?redirect=$redirect&currentPage=$currentPage");
             exit();
         } else {
             echo '<script>alert("Wrong password");</script>'; 
@@ -41,7 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<script>alert("Account does not exist");</script>'; 
     }
 
-    mysqli_stmt_close($stmt);
 }
 
 mysqli_close($connection);
@@ -50,7 +50,8 @@ ob_start();
 
 ?>
 <!--------------------------------------------CSS-------------------------------------------->
-<link rel="stylesheet" type="text/css" href="../css/login.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="css/default.css">
 
 <?php
 $pageCSS = ob_get_clean();
@@ -61,8 +62,8 @@ ob_start();
 <div class="container">
     <div class="containerSide">
         <div class="logoContainer">
-            <img class="logoBackground" src="../assets/images/Breakfast Foods.png" alt="logo">
-            <img class="logoSimplified" src="../assets/images/Toast Logo.png" alt="logo">
+            <img class="logoBackground" src="assets/images/Breakfast Foods.png" alt="logo">
+            <img class="logoSimplified" src="assets/images/Toast Logo.png" alt="logo">
         </div>
     </div>
     <form action="login.php?redirect=<?php echo $redirect; ?>&currentPage=<?php echo $currentPage; ?>" method="post">
@@ -85,7 +86,7 @@ ob_start();
         
         <input class="formSubmitButton" type="submit" value="Login">
     </form>
-    <div class="backButton"><a href="../index.php?redirect=goback&currentPage=<?php echo $currentPage;?>""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#404040"><path d="m252-176-74-76 227-228-227-230 74-76 229 230 227-230 74 76-227 230 227 228-74 76-227-230-229 230Z"/></svg><h3>Go Back</h3></a></div>
+    <div class="backButton"><a href="index.php?redirect=goback&currentPage=<?php echo $currentPage;?>""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#404040"><path d="m252-176-74-76 227-228-227-230 74-76 229 230 227-230 74 76-227 230 227 228-74 76-227-230-229 230Z"/></svg><h3>Go Back</h3></a></div>
 </div>
 <?php
 $pageContents = ob_get_clean();
@@ -99,5 +100,5 @@ ob_start();
 <?php
 $pageScript = ob_get_clean();
 
-include '../layout/Layout.php';
+include 'layout/Layout.php';
 ?>

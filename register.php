@@ -6,7 +6,7 @@ $showNavBar = false;
 $redirect = $_GET['redirect'];
 $currentPage = $_GET['currentPage'];
 
-include '../php/session_Maker.php';
+include 'php/session_Maker.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirmPassword = $_POST['confirmPassword'];
 
     if ($password === $confirmPassword) {
-        require '../php/db_connection.php';
+        require 'php/db_connection.php';
 
         $query = "SELECT * FROM PROFILE WHERE Profile_Email = '$email'";
 
@@ -46,7 +46,8 @@ ob_start();
 
 ?>
 <!--------------------------------------------CSS-------------------------------------------->
-<link rel="stylesheet" type="text/css" href="../css/login.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="css/default.css">
 
 <?php
 $pageCSS = ob_get_clean();
@@ -57,8 +58,8 @@ ob_start();
 <div class="container">
     <div class="containerSide">
         <div class="logoContainer">
-            <img class="logoBackground" src="../assets/images/Breakfast Foods.png" alt="logo">
-            <img class="logoSimplified" src="../assets/images/Toast Logo.png" alt="logo">
+            <img class="logoBackground" src="assets/images/Breakfast Foods.png" alt="logo">
+            <img class="logoSimplified" src="assets/images/Toast Logo.png" alt="logo">
         </div>
     </div>
     <form action="register.php?redirect=<?php echo $redirect; ?>&currentPage=<?php echo $currentPage; ?>" method="post">
@@ -82,7 +83,7 @@ ob_start();
         </div>
         <input class="formSubmitButton" type="submit" value="Register">
     </form>
-    <div class="backButton"><a href="../index.php?redirect=goback&currentPage=<?php echo $currentPage;?>""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#404040"><path d="m252-176-74-76 227-228-227-230 74-76 229 230 227-230 74 76-227 230 227 228-74 76-227-230-229 230Z"/></svg><h3>Go Back</h3></a></div>
+    <div class="backButton"><a href="index.php?redirect=goback&currentPage=<?php echo $currentPage;?>""><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#404040"><path d="m252-176-74-76 227-228-227-230 74-76 229 230 227-230 74 76-227 230 227 228-74 76-227-230-229 230Z"/></svg><h3>Go Back</h3></a></div>
 </div>
 
 <?php
@@ -97,5 +98,5 @@ ob_start();
 <?php
 $pageScript = ob_get_clean();
 
-include '../layout/Layout.php';
+include 'layout/Layout.php';
 ?>

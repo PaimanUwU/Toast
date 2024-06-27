@@ -53,7 +53,7 @@ ob_start();
                 function logout() {
                     var confirmed = window.confirm("Are you sure you want to logout?");
                     if (confirmed) {
-                        window.location.href = "../page/logout.php";
+                        window.location.href = "../logout.php";
                     }
                 }
             </script>
