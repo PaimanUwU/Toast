@@ -19,10 +19,10 @@ ob_start();
 ?>
 
 <div  id="tagsBar" class="tagsSidebar" style="left: -100vw; display: <?php echo $tagsVisibility; ?>;">
-<h2>Tags</h2>
-<ul>
-    <?php include '../php/tagsDisplay.php'; ?>
-</ul>
+    <h2>Tags</h2>
+    <ul>
+        <?php include '../php/tagsDisplay.php'; ?>
+    </ul>
 </div>  
 <div  id="sideBar" class="sidebarContainer" onclick="closecategory()" ></div>
 <script>
@@ -332,7 +332,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
         </div>
         <div class="rightColumn">
             <!--popular-->
-            <?php echo $pageContents; ?>
+            <?php if ($showTags) {echo $pageContents;} ?>
         </div>
         <?php if (!$showTags) {echo $pageContents;}?>
 

@@ -15,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    $accountFount = false;
+
     // Prepare and bind
     $query = "SELECT Profile_ID, Profile_Email, Profile_Password FROM profile WHERE Profile_Email = ?";
     $stmt = mysqli_prepare($connection, $query);
@@ -33,15 +35,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["id"] = $id;
             $_SESSION["email"] = $email;
 
+            $accountFount = true;
+
             header("Location: auth.php?redirect=$redirect&currentPage=$currentPage");
             exit();
         } else {
             echo '<script>alert("Wrong password");</script>'; 
         }
-    } else {
-        echo '<script>alert("Account does not exist");</script>'; 
+    } 
+
+    $query = "SELECT Admin_ID, Admin_Email, Admin_Password FROM Admin WHERE Admin_Email = ?";
+    $stmt = mysqli_prepare($connection, $query);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $id = $row['Addmin_ID'];
+        $stored_password = $row['Admin_Password'];
+
+        if ($password == $stored_password) { // Directly compare the passwords
+            $_SESSION["loggedin"] = true;
+            $_SESSION["id"] = $id;
+            $_SESSION["email"] = $email;
+
+            $accountFount = true;
+
+            header("Location: admin/view.php?page=dashboard");
+            exit();
+        } else {
+            echo '<script>alert("Wrong password");</script>'; 
+        }
     }
 
+    if (!$accountFount) {
+        echo '<script>alert("Account not found");</script>'; 
+    }
 }
 
 mysqli_close($connection);

@@ -1,8 +1,5 @@
 <?php
-$pageTitle = "Toast/Search Result";
-$showTags = false;
-$showNavBar = false;
-$currentPage = "dashboard.php";
+$adminDirectory = "dashboard";
 
 ob_start();
 
@@ -29,6 +26,4 @@ ob_start();
 
 <?php
 $pageScript = ob_get_clean();
-
-include '../layout/admin.php';
 ?>
