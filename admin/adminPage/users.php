@@ -42,7 +42,6 @@ ob_start();
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Description</th>
-      <th scope="col">Password</th>
       <th scope="col">Image</th>
     </tr>
   </thead>
@@ -58,7 +57,6 @@ ob_start();
         $name=$row['Profile_Name'];
         $email=$row['Profile_Email'];
         $desc=$row['Profile_Desc'];
-        $password=$row['Profile_Password'];
         $image=$row['Profile_Image_Path'];
 
         echo ' <tr>
@@ -66,7 +64,6 @@ ob_start();
         <td>'.$name.'</td>
         <td>'.$email.'</td>
         <td>'.$desc.'</td>
-        <td>'.$password.'</td>  
         <td><image class="postImage" src='.$image.'></image></td>
         </tr> ';
     }
