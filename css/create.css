@@ -96,6 +96,26 @@
     font-size: 1.2rem;
 }
 
+.tagInput {
+    height: 4em;
+    width: 100%;
+    padding: 0.5em 3.5em;
+    background-color: var(--background--default);
+    border-radius: 1em;
+    border-color: var(--clr-dark);
+    border-style: solid;
+    font-size: 1em;
+}
+
+.tagInput option {
+    font-size: 1rem;
+    padding: 0.5em 0.5em;
+    border-radius: 1em;
+    border-color: var(--clr-dark);
+    border-style: solid;
+    background-color: var(--background--default);
+}
+
 .descInput {
     height: 4em;
     width: 100%;

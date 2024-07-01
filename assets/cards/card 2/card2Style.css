@@ -21,6 +21,7 @@
     transition: all 0.3s ease;
     position: relative;
     aspect-ratio: 1; /* Maintain square shape */
+    overflow: hidden; /* Ensure contents do not overflow */
 }
 
 .card2OuterControlled {
@@ -29,6 +30,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    padding: 0.5em 0.5em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,7 +52,12 @@
 
 .card2PostDetail {
     display: flex;
-    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: calc(100% - 0.5em - 0.5em);
+    max-width: 100%;
     flex-direction: column;
     background-color: white;
     padding: 0.5em 0.5em;
@@ -69,11 +76,24 @@
     margin: 0 0.4em;
 }
 
-.card2ProfileImage {
-    max-width: 1.5em;
-    max-height: 1.5em;
-    border-radius: 50px;
+.card2ProfileImageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-style: solid;
+    width: 2em;
+    height: 2em;
+    max-width: 2em;
+    max-height: 2em;
+    border-radius: 50px;
+    aspect-ratio: 1;
+}
+
+.card2ProfileImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    object-fit: cover;
 }
 
 .card2PostDetail h1 {
@@ -81,19 +101,14 @@
     overflow: hidden;
     text-overflow: ellipsis;
     position: relative;
-    max-width: 100%; /* Ensure it doesn't overflow its container */
-    padding-right: 1em; /* Space for the fade-out effect */
+    width: calc(100% - 1em);
 }
-
-.card2PostDetail h1::after {
+/* 
+.card2PostDetail h1:after {
     content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
     width: 1em;
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 100%);
-}
+} */
 
 .card2Container:hover .card2OuterControlled { /* Changed */
     opacity: 1; /* Added */
@@ -102,6 +117,10 @@
 .card2Container:hover {
     transform: scale(1.05); /* Scale up on hover */
     border-radius: 9px;
+}
+
+.card2FoodTitle {
+    max-width: 100%;
 }
 
 @media (max-width: 975px) {

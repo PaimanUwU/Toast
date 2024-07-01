@@ -2,6 +2,7 @@
 $pageTitle = "Toast/Tags";
 $showTags = true;
 $showNavBar = true;
+$showFooter = true;
 $currentPage = "tags.php?id=" . $_GET['id'];
 
 require '../php/db_connection.php';

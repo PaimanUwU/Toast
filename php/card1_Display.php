@@ -35,9 +35,9 @@ for ($i = 0; $i < $recipeCount; $i++):
         <div class="card1Image">
             <img class="card1FoodImage" src="<?php echo htmlspecialchars($recipe['food_image'], ENT_QUOTES, 'UTF-8'); ?>" alt=""> 
         </div>
-        <div>
+        <div class="card1Content">
             <div class="card1Profile">
-                <div>
+                <div class="card1ProfileImageContainer">
                     <img class="card1ProfileImage" src="<?php echo htmlspecialchars($recipe['profile_image'], ENT_QUOTES, 'UTF-8'); ?>" alt="">
                 </div>
                 <div>

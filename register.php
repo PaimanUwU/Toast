@@ -2,6 +2,7 @@
 $pageTitle = "Toast/Register";
 $showTags = false;
 $showNavBar = false;
+$showFooter = false;
 
 $redirect = $_GET['redirect'];
 $currentPage = $_GET['currentPage'];

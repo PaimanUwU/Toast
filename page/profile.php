@@ -2,6 +2,7 @@
 $pageTitle = "Toast/Profile";
 $showTags = false;
 $showNavBar = true;
+$showFooter = false;
 $currentPage = "profile.php";
 
 include '../php/session_Maker.php';
@@ -19,14 +20,6 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 } else {
     echo "Profile not found.";
-}
-
-$query = "SELECT COUNT(*) AS num_followees FROM Follower WHERE Followee_Profile_ID = $ProfileID";
-
-$result = mysqli_query($connection, $query);
-
-if ($row = mysqli_fetch_assoc($result)) {
-    $num_followees = $row['num_followees'];
 }
 
 ob_start();
@@ -71,10 +64,7 @@ ob_start();
         </div>
     </div>
     <div class="profileHeaderBottom">
-        <div class="profileFollower">
-            <h3>Followers:</h3>
-            <?php echo $num_followees ?>
-        </div>
+
     </div>
 </div>
 
@@ -114,7 +104,9 @@ ob_start();
                     <div class="card2PostDetailContainer">
                         <div class="card2PostDetail">
                             <div class="card2ProfileDetail">
-                                <img class="card2ProfileImage" src="<?php echo $profileImage; ?>"  alt="">
+                                <div class="card2ProfileImageContainer">
+                                    <img class="card2ProfileImage" src="<?php echo $recipe['profile_image']; ?>"  alt="">
+                                </div>
                                 <h3><?php echo $profileName; ?></h3>
                             </div>
                             <div>

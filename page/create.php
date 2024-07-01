@@ -2,6 +2,7 @@
 $pageTitle = "Toast/Upload";
 $showTags = false;
 $showNavBar = true;
+$showFooter = false;
 $currentPage = "create.php";
 
 require '../php/db_connection.php';
@@ -21,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = trim($_POST['title']);
     $description = trim($_POST['description']);
     $recipe = trim($_POST['recipe']);
+    $tagId = trim($_POST['tagId']);
     $profileId = "$_SESSION[id]";
     $postLikes = 0;
     $postDislikes = 0;
@@ -38,9 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imageFileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
 
         // Insert initial data to get the Post_ID
-        $query = "INSERT INTO post (Post_Title, Post_Desc, Post_Content, Post_Likes, Post_Dislikes, Post_Image_Path, Profile_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO post (Post_Title, Post_Desc, Post_Content, Post_Likes, Post_Dislikes, Post_Image_Path, Profile_ID, Post_Tag_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($connection, $query);
-        mysqli_stmt_bind_param($stmt, "sssiisi", $title, $description, $recipe, $postLikes, $postDislikes, $imagePath, $profileId);
+        mysqli_stmt_bind_param($stmt, "sssiisii", $title, $description, $recipe, $postLikes, $postDislikes, $imagePath, $profileId, $tagId);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
 
@@ -75,8 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: post.php?id=$postId");
 }
 
-mysqli_close($connection);
-
 ob_start();
 
 ?>
@@ -108,6 +108,20 @@ ob_start();
         <div class="createTitle">
             <input class="titleInput" type="text" name="title" placeholder="Title">
         </div>
+        <div class="createTag">
+            <select class="tagInput" name="tagId" id="tagInput">
+                <option value="">Select Tag</option>
+                <?php
+                $query = "SELECT * FROM tags";
+                $result = mysqli_query($connection, $query);
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $OptionTagId = $row['Tag_ID'];
+                    $OptionTagCategory = $row['Tag_Category'];
+                    echo "<option value='$OptionTagId'>$OptionTagCategory</option>";
+                }
+                ?>
+            </select>
+        </div>
         <hr height="1px" width="100%" color="#404040" size="1px" border-radius="5px" />
         <div class="createDesc">
             <textarea class="descInput" name="description" placeholder="Description"></textarea>
@@ -136,6 +150,8 @@ ob_start();
 
 <?php
 $pageScript = ob_get_clean();
+
+mysqli_close($connection);
 
 include '../layout/Layout.php';
 ?>

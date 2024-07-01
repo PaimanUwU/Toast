@@ -393,6 +393,80 @@ h3 {
     text-decoration: none;
 }
 
+.footer {
+    width: 100%;
+    height: auto;
+    background-color: var(--clr-primary);
+    display: flex;
+    flex-direction: column;
+    padding: 2em 2em;
+    color: var(--clr-dark);
+    gap: 3em;
+}
+
+.footerContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
+.footerLogo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.4em;
+}
+
+.footerLogo img {
+    width: 15em;
+    height: auto;
+    border-radius: 5px;
+}
+
+.footerText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 20em;
+    gap: 1em;
+}
+
+.footerLinks {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+}
+
+.footerLinks a {
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    color: var(--clr-dark);
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ffffff;
+    background-color: #ffffff;
+    border-radius: 1em; 
+    padding: 0.5em 1em;
+    transition: all 0.3s ease;
+}
+
+.footerLinks a:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+}
+
+.footerBottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+}
+
 
 
 
@@ -438,6 +512,14 @@ h3 {
     .logobutton {
         display: none;
     }
+    
+    #footerResponsive {
+        width: 100%;
+        gap: 2em;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 @media (max-width: 768px) {
@@ -456,6 +538,7 @@ h3 {
     h3 {
         font-size: 0.8rem;
     }
+
 }
 
 @media (max-width: 899px) {    

@@ -30,16 +30,19 @@ foreach ($recipes as $recipe):
         <style>
             #card2Container<?php echo $recipe['postID']; ?>{
                 background-image: url(<?php echo $recipe['food_image']; ?>);
+                background-size: cover;
             }
         </style>
         <div class="card2OuterControlled">
             <div class="card2PostDetailContainer">
                 <div class="card2PostDetail">
                     <div class="card2ProfileDetail">
-                        <img class="card2ProfileImage" src="<?php echo $recipe['profile_image']; ?>"  alt="">
+                        <div class="card2ProfileImageContainer">
+                            <img class="card2ProfileImage" src="<?php echo $recipe['profile_image']; ?>"  alt="">
+                        </div>
                         <h3><?php echo $recipe['username']; ?></h3>
                     </div>
-                    <div>
+                    <div class="card2FoodTitle">
                         <h1><?php echo $recipe['title']; ?></h1>
                     </div>
                 </div>

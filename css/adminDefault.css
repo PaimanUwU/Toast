@@ -234,16 +234,16 @@ h3 {
 
 .rightColumn {
     display: flex;
-    height: 200vh;
+    height: 100%;
     width: calc(100% - 18rem - 40px); /* Adjust the width considering the left column and padding */
     background-color: var(--background-default);
-    background-color: aqua;
+    background-color: var(--background-default);
     flex-direction: column;
     padding: 0 1em;
     padding-bottom: 4em;
     gap: 3em;
     box-sizing: border-box; /* Include padding within the width */
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 
 .contents {

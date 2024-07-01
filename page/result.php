@@ -2,6 +2,8 @@
 $pageTitle = "Toast/Search Result";
 $showTags = true;
 $showNavBar = true;
+$showFooter = true;
+
 
 $searchQuery = $_GET['searchQuery'];
 $currentPage = "result.php?searchQuery=$searchQuery";

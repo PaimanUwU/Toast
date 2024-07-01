@@ -59,6 +59,21 @@
     transition: all ease 0.5s;
 }
 
+.tagContainer {
+    display: flex;
+    position: absolute;
+    z-index: 4;
+    margin: 1em 1em;
+    border-radius: 1em;
+    border-style: solid;
+    background-color: var(--background-default);
+    border-color: var(--clr-dark);
+    border-width: 1px;
+    padding: 0.5em 1em;
+    justify-self: flex-end;
+    align-self: flex-start;
+}
+
 .postContainerControlled {
     position: relative;
     display: flex;
@@ -211,6 +226,7 @@
     gap: 1em;
     width: 100%;
     height: 100%;
+    min-height: 60vh;
 }
 
 .postComment {
@@ -276,7 +292,7 @@
     padding: 0.5em 0.5em;
 }
 
-.commentInput {
+.textInput {
     width: 100%;
     height: 100%;
     display: flex;
@@ -290,11 +306,11 @@
     transition: all ease 0.15s;
 }
 
-.commentInput:hover {
+.textInput:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.commentSubmitButton {
+.submitButton {
     background-color: var(--clr-primary);
     color: var(--clr-dark);
     border-style: none;
@@ -306,6 +322,19 @@
     width: 5em;
 }
 
+.submitButton:hover {
+    background-color: var(--clr-primary-darken);
+}
+
+.reportForm {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding: 0.5em 0.5em;
+}
 
 
 @media (max-width: 680px) {

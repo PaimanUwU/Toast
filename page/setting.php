@@ -2,6 +2,7 @@
 $pageTitle = "Toast/Setting";
 $showTags = false;
 $showNavBar = true;
+$showFooter = false;
 $currentPage = "setting.php";
 
 include '../php/session_Maker.php';

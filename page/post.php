@@ -1,6 +1,7 @@
 <?php
 $showTags = true;
 $showNavBar = true;
+$showFooter = false;
 
 require '../php/db_connection.php';
 include '../php/session_Maker.php';
@@ -23,6 +24,15 @@ if ($id > 0) {
         $postLikes = $row['Post_Likes'];
         $postDislike = $row['Post_Dislikes'];
         $postProfileID = $row['Profile_ID'];
+        $postTagID = $row['Post_Tag_ID'];
+
+        $query = "SELECT * FROM Tags WHERE Tag_ID = $postTagID";
+        $result = mysqli_query($connection, $query);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $tagCategory = $row['Tag_Category'];
+        }
 
         // Fetch profile information
         $queryProfile = "SELECT * FROM Profile WHERE Profile_ID = $postProfileID";
@@ -33,14 +43,6 @@ if ($id > 0) {
 
             $profileName = htmlspecialchars($rowProfile['Profile_Name']);
             $profileImage = $rowProfile['Profile_Image_Path'];
-        }
-
-        // Fetch follower count
-        $queryFollowers = "SELECT COUNT(*) AS num_followees FROM Follower WHERE Followee_Profile_ID = $postProfileID";
-        $resultFollowers = mysqli_query($connection, $queryFollowers);
-
-        if ($resultFollowers && $rowFollowers = mysqli_fetch_assoc($resultFollowers)) {
-            $num_followees = $rowFollowers['num_followees'];
         }
 
         // Add post history      
@@ -115,11 +117,14 @@ $pageCSS = ob_get_clean();
 ob_start();
 ?>
 <!------------------------------------------Content------------------------------------------>
+
 <div class="postContainer">
     <img src="<?php echo $postImage; ?>" alt="post image" class="postImage" id="postImage">
     <div class="postImageGradient" id="background"></div>
-
+    
     <img src="<?php echo $postImage; ?>" alt="post image" class="postImageInner" id="postImageInner">
+    
+    <a href="tags.php?id=<?php echo $postTagID; ?>" class="tagContainer"><h3>Tag: <?php echo $tagCategory; ?></h3></a>
 
     <div class="postContainerControlled">
         <!--TODO: add like button, dislike button, report button.-->
@@ -155,9 +160,6 @@ ob_start();
             <img src="<?php echo $profileImage; ?>" alt="profile image" class="postProfileImage">
             <div class="profileDetail">
                 <h2 class="profileName"><?php echo $profileName; ?></h2>
-                <div>
-                    <p class="profileFollowerCount"><?php echo $num_followees; ?> Followers</p>
-                </div>
             </div>
         </a>
 
@@ -177,13 +179,21 @@ ob_start();
             -->
             <h1>Comments</h1>
             <form <?php echo $commentForm; ?> action="../php/addCommentPost.php?id=<?php echo $postID; ?>&profileID=<?php echo $ProfileID; ?>" method="POST" class="commentForm">
-                <input class="commentInput" type="text" name="comment" placeholder="Write a comment...">
-                <input class="commentSubmitButton" type="submit" name="submit" value="Submit">
+                <input class="textInput" type="text" name="comment" placeholder="Write a comment...">
+                <input class="submitButton" type="submit" name="submit" value="Submit">
             </form>
             <?php include '../php/comment_Display.php'; ?>
             
         </div>
     </div>
+
+
+    <div class="postContainerControlled">
+        <form class="reportForm" action="../php/reportPost.php?id=<?php echo $postID; ?>" method="POST">
+            <h3>Report Post</h3>    
+            <input class="textInput" type="text" name="reportReason" placeholder="Reason">
+            <input class="submitButton" type="submit" name="report" value="Report">
+        </form>
 </div>
 
 <?php

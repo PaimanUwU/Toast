@@ -2,6 +2,7 @@
 $pageTitle = "Home";
 $showTags = true;
 $showNavBar = true;
+$showFooter = true;
 $currentPage = "home.php";
 
 include '../php/session_Maker.php';

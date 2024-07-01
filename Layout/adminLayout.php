@@ -182,11 +182,11 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             <div class="tags">
                 <h2>Menu</h2>
                 <ul>
-                    <li><a href="#">Dashboard</a></li>
-                    <li><a href="#">Database Management</a></li>
-                    <li><a href="#">User Management</a></li>
-                    <li><a href="#">Post Management</a></li>
-                    <li><a href="#">Tag Management</a></li>
+                    <li><a href="view.php?page=dashboard">Dashboard</a></li>
+                    <li><a href="view.php?page=database">Database Management</a></li>
+                    <li><a href="view.php?page=users">User Management</a></li>
+                    <li><a href="view.php?page=posts">Post Management</a></li>
+                    <li><a href="view.php?page=tags">Tag Management</a></li>
                 </ul>
             </div>
         </div>

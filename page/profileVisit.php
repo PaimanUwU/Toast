@@ -2,6 +2,7 @@
 $pageTitle = "Toast/Profile Visit";
 $showTags = false;
 $showNavBar = true;
+$showFooter = false;
 $currentPage = "profileVisit.php?id=" . $_GET['id'];
 
 $visitProfileID = intval($_GET['id']);
@@ -26,20 +27,8 @@ if ($result && $result->num_rows > 0) {
     exit;
 }
 
-// Fetch number of followers
-$query = "SELECT COUNT(*) AS num_followees FROM Follower WHERE Followee_Profile_ID = ?";
-$stmt = $connection->prepare($query);
-$stmt->bind_param("i", $visitProfileID);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($row = $result->fetch_assoc()) {
-    $num_followees = $row['num_followees'];
-}
-
-$isFollowed = "false";
 $isLoggedIn = "false";
-$followButton = "href=../index.php?redirect=auth&currentPage=profileVisit.php?id=$visitProfileID";
+
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
     $currentProfileID = $_SESSION['id']; // Assuming you store the current profile ID in session
@@ -75,9 +64,6 @@ ob_start();
 <div class="profileHeader">
     <div class="profileHeaderTop">
         <h1>Profile</h1>
-        <a id="followButton" class="followButton" <?php echo $followButton; ?>>
-            <h3>Follow</h3>
-        </a>
     </div>
     <div class="profileHeaderMiddle">
         <div class="profileImage">
@@ -91,10 +77,7 @@ ob_start();
         </div>
     </div>
     <div class="profileHeaderBottom">
-        <div class="profileFollower">
-            <h3>Followers:</h3>
-            <?php echo htmlspecialchars($num_followees, ENT_QUOTES, 'UTF-8'); ?>
-        </div>
+
     </div>
 </div>
 
@@ -139,13 +122,16 @@ ob_start();
                 <style>
                     #card2Container<?php echo $recipe['postID']; ?>{
                         background-image: url('<?php echo $recipe['food_image']; ?>');
+                        background-size: cover;
                     }
                 </style>
                 <div class="card2OuterControlled">
                     <div class="card2PostDetailContainer">
                         <div class="card2PostDetail">
                             <div class="card2ProfileDetail">
-                                <img class="card2ProfileImage" src="<?php echo $recipe['profile_image']; ?>" alt="">
+                                <div class="card2ProfileImageContainer">
+                                    <img class="card2ProfileImage" src="<?php echo $recipe['profile_image']; ?>"  alt="">
+                                </div>
                                 <h3><?php echo $recipe['username']; ?></h3>
                             </div>
                             <div>
@@ -168,64 +154,6 @@ ob_start();
 
 <!------------------------------------------Script-------------------------------------------->
 <script>
-    var followStyle = document.getElementById('followButton');   
-    var isFollowed = <?php echo $isFollowed; ?>;
-    var isLoggedIn = <?php echo $isLoggedIn; ?>;
-
-    console.log(isFollowed);
-    console.log(isLoggedIn);
-
-    if (isFollowed) {
-        followStyle.classList.add('clicked');
-
-        console.log("follow condition fired");
-    } else {
-        follow.classList.remove('clicked');
-
-        consoleStyle.log("unfollow condition fired");
-    }
-
-    function followFunc() {     
-        // Check if the user is logged in
-        if (isLoggedIn) {
-            // Proceed with like or dislike functionality
-            if (isFollowed) {
-                isFollowed = false;
-                followStyle.classList.remove('clicked');
-                updateFollow('unfollow');
-
-                console.log("unfollow button fired");
-            } else {
-                isFollowed = true;
-                followStyle.classList.add('clicked');
-                updateFollow('follow');
-
-                console.log("follow button fired");
-            }
-        }
-
-        console.log("button fired");
-    }    
-
-    function updateFollow(action) {
-        fetch('../php/updateFollow.php?action=' + action + '&visitProfileID=' + <?php echo $visitProfileID; ?>, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                action: action,
-                visitProfileID: <?php echo $visitProfileID; ?>
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
 
 </script>
 

@@ -18,6 +18,15 @@
 .card1Controlled:hover {
     background-color: gainsboro;
 }
+
+.card1Content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 1em;
+}
+
 .card1Profile {
     display: flex;
     align-items: center;
@@ -29,8 +38,6 @@
     margin: 0 0.4em;
 }
 
-
-
 .card1FoodTitle {
     margin: 0 1em;
 }
@@ -39,13 +46,31 @@
     margin: 0 1em;
 }
 
-.card1FoodImage {
-    max-height: 140px;
+.card1Image {
+    height: 10em;
+    width: 10em;
     border-radius: 5px;
+    aspect-ratio: 1;
+}
+
+.card1FoodImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.card1ProfileImageContainer {
+    width: 2em;
+    height: 2em;
+    border-radius: 5em;
+    border-style: solid;
 }
 
 .card1ProfileImage {
-    max-width: 2em;
-    border-radius: 50px;
-    border-style: solid;
+    width: 100%;
+    height: 100%;
+    border-radius: 5em;
+    object-fit: cover;
+    aspect-ratio: 1;
 }

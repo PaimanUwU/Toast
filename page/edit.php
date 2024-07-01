@@ -2,6 +2,7 @@
 $pageTitle = "Toast/Edit";
 $showTags = false;
 $showNavBar = true;
+$showFooter = false;
 $currentPage = "edit.php";
 
 require '../php/db_connection.php';
@@ -33,6 +34,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     $postDislikes = $row['Post_Dislikes'];
     $postProfileID = $row['Profile_ID'];
     $postImagePath = $row['Post_Image_Path'];
+    $tagID = $row['Post_Tag_ID'];
 
     // Check if the post belongs to the current profile
     if (!($postProfileID == $currentProfileID)) {
@@ -47,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = trim($_POST['description']);
     $recipe = trim($_POST['recipe']);
     $profileId = "$_SESSION[id]";
+    $tagID = trim($_POST['tagId']);
     $imagePath = $postImagePath;
 
     // Validate form inputs
@@ -85,17 +88,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $query = "UPDATE post 
-              SET Post_Title = ?, Post_Desc = ?, Post_Content = ?, Post_Image_Path = ? 
+              SET Post_Title = ?, Post_Desc = ?, Post_Content = ?, Post_Image_Path = ?, Post_Tag_ID = ?
               WHERE Post_ID = ?";
     $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_bind_param($stmt, "ssssi", $title, $description, $recipe, $imagePath, $postEditID);
+    mysqli_stmt_bind_param($stmt, "ssssii", $title, $description, $recipe, $imagePath, $tagID, $postEditID);
     mysqli_stmt_execute($stmt);
 
     echo "<alert>Upload successful.</alert>";
     header("Location: post.php?id=$postEditID");
 }
-
-mysqli_close($connection);
 
 ob_start();
 
@@ -128,6 +129,29 @@ ob_start();
         <div class="createTitle">
             <input class="titleInput" type="text" name="title" placeholder="Title" value="<?php echo $postTitle; ?>">
         </div>
+        <div class="createTag">
+            <select class="tagInput" name="tagId" id="tagInput">
+                <?php
+                $query = "SELECT * FROM tags WHERE Tag_ID = $tagID";
+                $result = mysqli_query($connection, $query);
+
+                $row = mysqli_fetch_assoc($result);
+                $OptionTagId = $row['Tag_ID'];
+                $OptionTagCategory = $row['Tag_Category'];
+
+                echo "<option value='$OptionTagId'>$OptionTagCategory (current)</option>";
+
+                $query = "SELECT * FROM tags";
+                $result = mysqli_query($connection, $query);
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $OptionTagId = $row['Tag_ID'];
+                    $OptionTagCategory = $row['Tag_Category'];
+                    echo "<option value='$OptionTagId'>$OptionTagCategory</option>";
+                }
+                ?>
+            </select>
+        </div>
         <hr height="1px" width="100%" color="#404040" size="1px" border-radius="5px" />
         <div class="createDesc">
             <textarea class="descInput" name="description" placeholder="Description"><?php echo $postDesc; ?></textarea>
@@ -156,6 +180,8 @@ ob_start();
 
 <?php
 $pageScript = ob_get_clean();
+
+mysqli_close($connection);
 
 include '../layout/Layout.php';
 ?>
